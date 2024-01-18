@@ -23,9 +23,9 @@ export const RESUME_DATA = {
   name: "Sergio Scardigno",
   initials: "SS",
   location: "La Plata, Buenos Aires, AR",
-  locationLink: "https://www.google.com/maps/place/Argentina",
+  locationLink: "https://www.google.com/maps/place/La+Plata,+Provincia+de+Buenos+Aires/",
   about:
-    "Backend Developer | PHP Developer | DevOps Engineer",
+    "DevOps Engineer | Backend Developer | PHP Developer",
   summary:
     "Soy Sergio, un apasionado DevOps con sólidos conocimientos en programación. Mi trayectoria incluye roles como Programador Php Full-Stack en la Dirección General de Cultura y Educación de la Provincia de Buenos Aires y la Honorable Cámara de Senadores. Además, he contribuido al desarrollo en Usina Estrategias Digitales. Mi formación abarca un curso de DevOps Engineer en EducacionIT, donde adquirí habilidades en Terraform, Ansible, Jenkins, Kubernetes, Docker, y más. Proyectos destacados como Vagrant, Docker, Kubernetes, Helm y ArgoCD reflejan mi enfoque integral. He compartido conocimientos en publicaciones sobre tecnologías como Copilot y la integración de Prometheus y Grafana.",
   avatarUrl: "https://avatars.githubusercontent.com/scardigno1982",
