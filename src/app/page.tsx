@@ -93,13 +93,13 @@ export default function Page() {
           </Avatar>
         </div>
         <Section>
-          <h2 className="text-xl font-bold">About</h2>
+          <h2 className="text-xl font-bold">Sobre mi</h2>
           <p className="text-pretty font-mono text-sm text-muted-foreground">
             {RESUME_DATA.summary}
           </p>
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Work Experience</h2>
+          <h2 className="text-xl font-bold">Experiencia laboral</h2>
           {RESUME_DATA.work.map((work) => {
             return (
               <Card key={work.company}>
@@ -139,21 +139,22 @@ export default function Page() {
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Education</h2>
+          <h2 className="text-xl font-bold">Educación</h2>
           {RESUME_DATA.education.map((education) => {
             return (
-              <Card key={education.school}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="font-semibold leading-none">
-                      {education.school}
-                    </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+              <Card key={education.school} className="bg-white p-4 rounded-md shadow-md">
+                <CardHeader className="mb-4">
+                  <div className="flex items-center justify-between gap-x-1 text-base">
+                    <div>
+                      <h3 className="font-semibold text-xl">{education.school}</h3>
+                      <div className="flex items-center text-gray-500 text-xs">
                       {education.start} - {education.end}
+                      </div>
+                      <CardContent className="mt-2">{education.degree}</CardContent>
+                      <div className="text-gray-500 text-xs">{education.aptitudes}</div>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="mt-2">{education.degree}</CardContent>
               </Card>
             );
           })}
@@ -168,7 +169,7 @@ export default function Page() {
         </Section>
 
         <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Projects</h2>
+          <h2 className="text-xl font-bold">Proyectos</h2>
           <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
             {RESUME_DATA.projects.map((project) => {
               return (
@@ -184,7 +185,7 @@ export default function Page() {
           </div>
         </Section>
         <Section>
-          <h2 className="text-xl font-bold mt-3">Awards & Collections</h2>
+          <h2 className="text-xl font-bold mt-3">Licencias y certificaciones</h2>
           {RESUME_DATA.awards.map((awards) => {
             return (
               <Card key={awards.award}>
@@ -203,7 +204,7 @@ export default function Page() {
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold mt-3">Published Works</h2>
+          <h2 className="text-xl font-bold mt-3">Publicaciones</h2>
           <p>Significant contributions in published works / books / websites</p>
           {RESUME_DATA.published.map((published) => {
             return (

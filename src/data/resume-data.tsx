@@ -20,51 +20,127 @@ import {
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
-  name: "Ian Hobbs",
-  initials: "IJ",
-  location: "Sydney, Australia, EST",
-  locationLink: "https://www.google.com/maps/place/Sydney",
+  name: "Sergio Scardigno",
+  initials: "SS",
+  location: "La Plata, Buenos Aires, AR",
+  locationLink: "https://www.google.com/maps/place/Argentina",
   about:
-    "Creative with a focus on Web, Photomedia and Coding",
+    "Backend Developer | PHP Developer | DevOps Engineer",
   summary:
-    "Thanks to everybody who helped. Gratefull for everyone's support.",
+    "Soy Sergio Scardigno, un Programador PHP Back-end Web Developer con una trayectoria sólida y diversificada en el campo de la tecnología. Con una pasión por el desarrollo web, me he especializado en PHP, Laravel, HTML5 y CSS3. Mi experiencia y habilidades me han llevado a ser un Programador Full-Stack, donde he tenido la oportunidad de trabajar tanto en el front-end como en el back-end, creando soluciones integrales y eficientes.",
 
-  avatarUrl: "https://avatars.githubusercontent.com/ianhobbs",
-  personalWebsiteUrl: "https://ianhobbsmedia.com.au",
+  avatarUrl: "https://avatars.githubusercontent.com/scardigno1982",
+  personalWebsiteUrl: "#",
   contact: {
-    email: "admin@ianhobbsmedia.com.au",
-    tel: "+61411032601",
+    email: "sergioscardigno82@gmail.com",
+    tel: "+542216038230",
     social: [
       {
         name: "GitHub",
-        url: "https://github.com/ianhobbs",
+        url: "https://github.com/scardigno1982",
         icon: GitHubIcon,
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/ianhobbs/",
+        url: "https://www.linkedin.com/in/sergio-scardigno/",
         icon: LinkedInIcon,
-      },
-      {
-        name: "X",
-        url: "https://twitter.com/ianHobbs_media",
-        icon: XIcon,
       },
     ],
   },
   education: [
     {
-      school: "University of Sydney, Sydney College of Art",
-      degree: "BA(Hons) Major in Photomedia / Electronic Media",
-      start: "1997",
-      end: "1998",
+      school: "EducacionIT",
+      degree: "Devops Engineer",
+      aptitudes: "Terraform · DevOps · Ansible · Jenkins · Kubernetes · AWS CloudFormation · Docker · GitOps · Amazon Web Services (AWS)",
+      start: "2023",
+      end: "2024",
     },
     {
-      school: "University of NSW",
-      degree: "Bachelor's Degree in Fine Art, Major in Photomedia",
-      start: "1980",
-      end: "1984",
+      school: "Universidad Nacional de Tres de Febrero",
+      degree: "Argentina Programa Backend",
+      aptitudes: "Nongo, Node, Express",
+      start: "2023",
+      end: "2023",
     },
+    {
+      school: "EducacionIT",
+      degree: "Introducción a Bases de Datos y SQL",
+      aptitudes: "SQL · Microsoft SQL Server · MySQL · PostgreSQL",
+      start: "2023",
+      end: "2023",
+    },
+    {
+      school: "EducacionIT",
+      degree: "PHP Arquitectura Avanzada",
+      aptitudes: "Programación orientada a objetos (POO) · PHP",
+      start: "2022",
+      end: "2022",
+    },
+    {
+      school: "EducacionIT",
+      degree: "React js",
+      aptitudes: "JavaScript · React.js",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: " Javascript Desarrollador Avanzado",
+      aptitudes: "JavaScript",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: " API Web Service",
+      aptitudes: "API de Postman · Web Services API · Desarrollo de API",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: "Python para Analisis de Datos",
+      aptitudes: "Python · Pandas · NumPy · Matplotlib · Jupyter Notebook",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: "Desarrollo Web en Python & Django",
+      aptitudes: "Python · Django · HTML · CSS · JavaScript",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: "Python Programming",
+      aptitudes: "Python · Programación orientada a objetos (POO) · Programación",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: "Administrador Hosting Avanzado Linux",
+      aptitudes: "Administración de DNS · Linux · Servicios de hosting · Servidores web",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: "PHP Orientada a Objetos (OOP)",
+      aptitudes: "Programación orientada a objetos (POO) · PHP",
+      start: "2018",
+      end: "2018",
+    },
+    {
+      school: "EducacionIT",
+      degree: "PHP Orientada a Objetos (OOP)",
+      aptitudes: "Programación orientada a objetos (POO) · PHP",
+      start: "2018",
+      end: "2018",
+    },
+
+
   ],
   work: [
     {
@@ -78,114 +154,22 @@ export const RESUME_DATA = {
       description:
         "Web production. Experience includes; Videographer, Editor, Photographer,Front-end development, Animator, Storyboarding, Prototype development,Design, Server management and Data management. Client and project management. Art direction and concept development. Media strategy and Editorial strategy.",
     },
-    {
-      company: "Codey",
-      link: "https://codey.com.au",
-      badges: [],
-      title: "Owner",
-      logo: ClevertechLogo,
-      start: "2011",
-      end: "now",
-      description:
-        "Hosting server and site maintenance. Server management and Data management. Client service. Backup management. Site optimisation. Threat mitigation",
-    },
-    {
-      company: "Sydney University SCA",
-      link: "https://www.sydney.edu.au/arts/schools/sydney-college-of-the-arts.html",
-      badges: ["Contract"],
-      title: "Research Officer",
-      logo: JojoMobileLogo,
-      start: "10/2018",
-      end: "12/2018",
-      description:
-        "Contract to research, collect and promote staff research outputs for University pages. Videography, Photography and research development. Prototyping web pages",
-    },
-    {
-      company: "Sydney University SCA",
-      link: "https://www.sydney.edu.au/arts/schools/sydney-college-of-the-arts.html",
-      badges: ["Sessional"],
-      title: "Lecturer",
-      logo: NSNLogo,
-      start: "2010",
-      end: "2014",
-      description: "Design and deliver subjects in Photography and Electronic & New Media.",
-    },
-    {
-      company: "Insearch UTS",
-      link: "https://utscollege.edu.au",
-      badges: ["Sessional"],
-      title: "Lecturer",
-      logo: NSNLogo,
-      start: "2010",
-      end: "2014",
-      description: "Deliver subjects in Digital Literacy",
-    },
-    {
-      company: "SAE + Quamtum",
-      link: "https://sae.edu.au/",
-      badges: ["Sessional"],
-      title: "Lecturer",
-      logo: NSNLogo,
-      start: "2007",
-      end: "2010",
-      description: "Deliver courses in Web, Design, Video and Animation. Audio",
-    },
-    {
-      company: "University of Newcastle. Fine Arts Faculty",
-      link: "https://www.newcastle.edu.au",
-      badges: ["Sessional"],
-      title: "Lecturer",
-      logo: NSNLogo,
-      start: "2001",
-      end: "2006",
-      description: "Design and deliver courses in Digital Imaging, Video",
-    },
-    {
-      company: "University of Western Sydney. Communications & Design.",
-      link: "https://www.westernsydney.edu.au",
-      badges: ["Sessional"],
-      title: "Lecturer",
-      logo: NSNLogo,
-      start: "2001",
-      end: "2006",
-      description: "Design and New Media, Web and Time based media.",
-    },
-    {
-      company: "Enmore TAFE",
-      link: "https://www.tafensw.edu.au/design-centre-enmore",
-      badges: ["Sessional"],
-      title: "Teacher",
-      logo: NSNLogo,
-      start: "2001",
-      end: "2006",
-      description: "Design and deliver courses in New media, Flash, Web Photo-media, Design. Animation",
-    }
   ],
 
 
   awards: [
     {
-      award: "Recipient of Premiers Department Grant with Penrith Regional Gallery",
-      year: "2003",
+      award: "AWS Knowledge: Amazon EKS",
+      year: "2023",
     },
     {
-      award: "Recipient of New Media Grant for Interactive Works, Australia Council.",
-      year: "1999",
+      award: "Certificado de asistencia al curso: Desarrollo rápido de aplicaciones con Low Code, organizado por DonWeb (Marzo-Abril 2023)",
+      year: "2023",
     },
     {
-      award: "The Art Directors Club, New York, NY 75th Awards, 'Merit Award for Editorial Publications' for Object Magazine, Craft Council of NSW.",
-      year: "1996",
+      award: "Curso Online de Vagrant",
+      year: "2023",
     },
-    {
-      award: "National Gallery of Australia Collection. 'Sea Shell Headset' Joyce Hinterding & Ian Hobbs",
-      year: "1988",
-    },
-    {
-      award: "National Gallery of Australia Collection. Poster, 'May 1st Club - Smash Capital'.",
-      year: "1983",
-    },
-
-
   ],
 
   published: [
@@ -220,17 +204,31 @@ export const RESUME_DATA = {
   // end insert
   
   skills: [
-    "Photography",
-    "Studio Photography",
-    "PHP-CMS",
-    "JavaScript",
+    "PHP",
+    "Laravel",
+    "MySQL",
+    "HTML",
     "CSS",
-    "Tailwind",
-    "Project Management",
-    "Web Production",
-    "Animation",
-    "After Effects",
-    "Audio production"
+    "Javascript",
+    "Git",
+    "Linux",
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Jenkins",
+    "Ansible",
+    "Terraform",
+    "Bash",
+    "Python",
+    "Node.js",
+    "React",
+    "Vue",
+    "Angular",
+    "Wordpress",
+    "Devops",
+    "GCP",
+    "Azure",
+
   ],
   projects: [
     {
