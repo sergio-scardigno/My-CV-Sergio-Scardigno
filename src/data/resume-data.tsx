@@ -27,8 +27,7 @@ export const RESUME_DATA = {
   about:
     "Backend Developer | PHP Developer | DevOps Engineer",
   summary:
-    "Soy Sergio Scardigno, un Programador PHP Back-end Web Developer con una trayectoria sólida y diversificada en el campo de la tecnología. Con una pasión por el desarrollo web, me he especializado en PHP, Laravel, HTML5 y CSS3. Mi experiencia y habilidades me han llevado a ser un Programador Full-Stack, donde he tenido la oportunidad de trabajar tanto en el front-end como en el back-end, creando soluciones integrales y eficientes.",
-
+    "Soy Sergio, un apasionado DevOps con sólidos conocimientos en programación. Mi trayectoria incluye roles como Programador Php Full-Stack en la Dirección General de Cultura y Educación de la Provincia de Buenos Aires y la Honorable Cámara de Senadores. Además, he contribuido al desarrollo en Usina Estrategias Digitales. Mi formación abarca un curso de DevOps Engineer en EducacionIT, donde adquirí habilidades en Terraform, Ansible, Jenkins, Kubernetes, Docker, y más. Proyectos destacados como Vagrant, Docker, Kubernetes, Helm y ArgoCD reflejan mi enfoque integral. He compartido conocimientos en publicaciones sobre tecnologías como Copilot y la integración de Prometheus y Grafana.",
   avatarUrl: "https://avatars.githubusercontent.com/scardigno1982",
   personalWebsiteUrl: "#",
   contact: {
@@ -92,27 +91,6 @@ export const RESUME_DATA = {
     },
     {
       school: "EducacionIT",
-      degree: " API Web Service",
-      aptitudes: "API de Postman · Web Services API · Desarrollo de API",
-      start: "2021",
-      end: "2021",
-    },
-    {
-      school: "EducacionIT",
-      degree: "Python para Analisis de Datos",
-      aptitudes: "Python · Pandas · NumPy · Matplotlib · Jupyter Notebook",
-      start: "2021",
-      end: "2021",
-    },
-    {
-      school: "EducacionIT",
-      degree: "Desarrollo Web en Python & Django",
-      aptitudes: "Python · Django · HTML · CSS · JavaScript",
-      start: "2021",
-      end: "2021",
-    },
-    {
-      school: "EducacionIT",
       degree: "Python Programming",
       aptitudes: "Python · Programación orientada a objetos (POO) · Programación",
       start: "2021",
@@ -124,35 +102,43 @@ export const RESUME_DATA = {
       aptitudes: "Administración de DNS · Linux · Servicios de hosting · Servidores web",
       start: "2021",
       end: "2021",
-    },
-    {
-      school: "EducacionIT",
-      degree: "PHP Orientada a Objetos (OOP)",
-      aptitudes: "Programación orientada a objetos (POO) · PHP",
-      start: "2018",
-      end: "2018",
-    },
-    {
-      school: "EducacionIT",
-      degree: "PHP Orientada a Objetos (OOP)",
-      aptitudes: "Programación orientada a objetos (POO) · PHP",
-      start: "2018",
-      end: "2018",
-    },
+    }
 
 
   ],
   work: [
     {
-      company: "Ian Hobbs Media",
-      link: "https://ianhobbsmedia.com.au",
+      company: "Dirección General de Cultura y Educación de la Provincia de Buenos Aires · Jornada completa",
+      link: "https://mapaescolar.abc.gob.ar",
       badges: [],
-      title: "Owner",
+      title: "Programador Php Full-Stack Developer",
       logo: ParabolLogo,
-      start: "2020",
+      start: "2023",
       end: "now",
       description:
-        "Web production. Experience includes; Videographer, Editor, Photographer,Front-end development, Animator, Storyboarding, Prototype development,Design, Server management and Data management. Client and project management. Art direction and concept development. Media strategy and Editorial strategy.",
+        "Administración de bases de datos SQL y Postgresql, Desarrollo de proyectos Angular y web. Implementacion de Jelkins para la automatizacion de proyectos.",
+    },
+    {
+      company: "Usina Estrategias digitales · Part-time",
+      link: "#",
+      badges: [],
+      title: "Programador Php Full-Stack Developer",
+      logo: ParabolLogo,
+      start: "2023",
+      end: "now",
+      description:
+        "Como desarrollador full stack abarca todas las etapas del desarrollo, desde el diseño inicial hasta el despliegue y mantenimiento continuo.",
+    },
+    {
+      company: "Honorable Cámara de Senadores de la Provincia de Buenos Aires · Jornada completa",
+      link: "#",
+      badges: [],
+      title: "Programador Php Full-Stack Developer",
+      logo: ParabolLogo,
+      start: "2018",
+      end: "2020",
+      description:
+        "Desarrollo Sección de noticias o Blog",
     },
   ],
 
@@ -174,29 +160,40 @@ export const RESUME_DATA = {
 
   published: [
     {
-      title: "Chester Nealie Etched in Fire",
-      pub: "Ron Sang Publications NZ",
-      year: "2016",
+      title: "Copilot utilizando LM Studio y el plugin Continue en Visual Studio Code",
+      pub: "En este artículo, te guiaré a través de los pasos para configurar tu propio copilot utilizando LM Studio y el plugin Continue en Visual Studio Code.",
+      year: "2024",
+      link: "https://bit.ly/425mZOT",
     },
     {
-      title: "Robyn Backen: Backspace",
-      pub: "Boccolate Publishing AU",
-      year: "2011",
+      title: "Integración de Prometheus y Grafana en Proyecto Laravel",
+      pub: "Quiero compartirles mi experiencia reciente en la implementación exitosa de Prometheus y Grafana en un proyecto Laravel, llevando el monitoreo a otro nivel. Configuré Prometheus y Grafana utilizando Docker Compose en una máquina virtual, mientras mi proyecto Laravel se ejecutaba sin problemas en Xampp.",
+      year: "2024",
+      link: "https://bit.ly/3HmZR4X",
     },
     {
-      title: "Liz Williamson: Textiles",
-      pub: "Craft Council of NSW AU",
-      year: "2009",
+      title: "Bootcamp de DevOps: Un Viaje Conjunto hacia la Integración Eficiente",
+      pub: "En el vertiginoso mundo de la tecnología, la integración eficiente de herramientas de desarrollo y operaciones (DevOps) se ha vuelto esencial para agilizar procesos y garantizar despliegues exitosos. Nuestra travesía, realizada en conjunto durante el Bootcamp de DevOps de Educación IT, nos llevó a explorar herramientas clave como Vagrant, Docker, Kubernetes, Helm y ArgoCD.",
+      year: "2023",
+      link: "https://bit.ly/3UbB3EJ",
     },
     {
-      title: "For Mathew and Others: Journey with Schizophrenia",
-      pub: "The University of New South Wales AU",
-      year: "2006",
+      title: "Automatizando el flujo de trabajo en proyectos Angular con Jenkins y CI/CD",
+      pub: "En mi trabajo actual, he implementado un robusto flujo de Integración Continua/Despliegue Continuo (CI/CD) para optimizar el desarrollo de proyectos Angular utilizando Jenkins. A continuación, comparto los pasos clave de la configuración de Jenkins y el flujo de CI/C",
+      year: "2023",
+      link: "https://bit.ly/3U5wlZ5",
     },
     {
-      title: "Degree Show 1998 SCA The University of Sydney: Catalogue",
-      pub: "Sydney College of The Arts AU",
-      year: "1998",
+      title: "Conectando Ubuntu 22.04 a SQL Server 2000: Superando Desafíos",
+      pub: "¿Te has enfrentado a la tarea aparentemente imposible de conectar Ubuntu 22.04 a una base de datos SQL Server 2000? No estás solo. La descontinuación de los conectores ODBC para esta antigua versión de SQL Server y la obsolescencia de los repositorios de Ubuntu 16.04 pueden hacer que esta tarea parezca un callejón sin salida. Pero no te preocupes, ¡aquí está la solución!",
+      year: "2023",
+      link: "https://www.linkedin.com/pulse/conectando-ubuntu-2204-sql-server-2000-superando-sergio-scardigno%3FtrackingId=eKnJ9deG2EZPGrAcajPAVg%253D%253D/?trackingId=eKnJ9deG2EZPGrAcajPAVg%3D%3D",
+    },
+    {
+      title: "Reemplazando la Librería Deprecada ultraware/roles en PHP 8.2.8 y Laravel 10: Creando una Solución Personalizada",
+      pub: "La librería ultraware/roles ha sido una herramienta invaluable para manejar roles y permisos en nuestras aplicaciones durante mucho tiempo. Sin embargo, como todas las cosas en el mundo de la tecnología, ha llegado el momento en que ha sido marcada como deprecada. Esto nos obliga a buscar nuevas soluciones, y en este artículo, te mostraré cómo reemplacé esta librería con mi propio código en Laravel 10.",
+      year: "2023",
+      link: "https://www.linkedin.com/pulse/reemplazando-la-librer%25C3%25ADa-deprecada-ultrawareroles-en-php-scardigno-zeeaf/",
     },
   ],
 
@@ -232,204 +229,97 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
-      title: "Clear Control Website",
+      title: "Vagrant, Docker, Kubernetes, Helm y ArgoCD",
       techStack: [
-        "KirbyCMS",
+        "Vagrant",
+        "Docker",
+        "Kubernetes",
+        "Helm",
+        "ArgoCD",
+      ],
+      description: "El proyecto implica la creación de una máquina virtual con Vagrant, dockerización de una aplicación, automatización del proceso con CI/CD, despliegue en Kubernetes con actualización sin interrupciones, y la implementación de Helm y ArgoCD para la gestión de aplicaciones con y sin Helm en distintos namespaces.",
+      logo: ConsultlyLogo,
+      link: {
+        label: "https://gitlab.com/sergioscardigno82/tp-10/",
+        href: "https://gitlab.com/sergioscardigno82/tp-10/",
+      },
+    },
+    {
+      title: "Jenkins y Vagrant",
+      techStack: [
+        "Jenkins",
+        "Vagrant",
+        "CI/CD",
+      ],
+      description: "Este instructivo detalla cómo configurar Jenkins, establecer un administrador, crear un pipeline y gestionar los permisos de scripts en el entorno Jenkins. También se incluye una guía para configurar Vagrant y crear una máquina virtual con Ubuntu 22.04.",
+      logo: ConsultlyLogo,
+      link: {
+        label: "https://github.com/Scardigno1982/CI-CD",
+        href: "https://github.com/Scardigno1982/TP-7-CI-CD",
+      },
+    },
+    {
+      title: "Integración de una imagen Docker previamente creada al entorno de Kubernetes",
+      techStack: [
+        "Kubernetes",
+        "Minikube",
+        "Docker",
+      ],
+      description: "En este trabajo, se llevó a cabo la integración de una imagen Docker previamente creada al entorno de Kubernetes",
+      logo: ConsultlyLogo,
+      link: {
+        label: "https://github.com/Scardigno1982/Kubernetes",
+        href: "https://github.com/Scardigno1982/TP-8-Kubernetes",
+      },
+    },
+    {
+      title: "Mapa Escolar",
+      techStack: [
+        "Angular",
         "Tailwind",
-        "AlpineJS",
-        "GSAP",
-        "Design",
+        "HTML",
+        "Typescript",
         "Content",
         "Full Stack Developer",
       ],
-      description: "Created a business website with seductive animations and strong case study representations",
+      description: "Replicando en Angular el proyecto ABC de la Dirección General de Cultura y Educación de la Provincia de Buenos Aires",
       logo: ConsultlyLogo,
       link: {
-        label: "clearcontrol.com.au",
-        href: "https://www.clearcontrol.com.au/",
+        label: "mapaescolar.abc.gob.ar",
+        href: "https://mapaescolar.abc.gob.ar",
       },
     },
     {
-      title: "Cementa Website",
-      techStack: ["PerchCMS", "AlpineJS", "Blythe", "Content",""],
-      description:
-        "A festival site showcasing artists and Festival events",
-      logo: MonitoLogo,
-      link: {
-        label: "cementa.com.au",
-        href: "https://cementa.com.au/",
-      },
-    },
-    {
-      title: "A Thousand Words Website",
-      techStack: ["PerchCMS", "AlpineJS", "Animation"],
-      description:
-        "A website of the Museum of Sydney 'A Thousand Words' exhibition",
-      logo: JarockiMeLogo,
-      link: {
-        label: "atwonline.com.au",
-        href: "https://atwonline.com.au",
-      },
-    },
-    {
-      title: "Uno",
-      techStack: ["After Effects","Video"],
-      description:
-        "Develop animations for custom Architectural LED screens for Robyn Backen",
-      logo: Minimal,
-      link: {
-        label: "ianhobbsmedia.com.au/uno",
-        href: "https://ianhobbsmedia.com.au/uno",
-      },
-    },
-    {
-      title: "Thought Train Animation",
-      techStack: ["After Effects","Video"],
-      description:
-        "Animation for Wynscreen Video project with Robyn Backen",
-      logo: BarepapersLogo,
-      link: {
-        label: "ianhobbsmedia.com.au/thought-train",
-        href: "https://ianhobbsmedia.com.au/thought-train",
-      },
-    },
-    {
-      title: "Art Photography",
-      techStack: ["Art Reproduction"],
-      description: "Fine Art documentation projects",
-      logo: YearProgressLogo,
-      link: {
-        label: "ianhobbsmedia.com.au/art",
-        href: "https://ianhobbsmedia.com.au/art",
-      },
-    },
-    {
-      title: "Australian Ceramics Website",
+      title: "Diera",
       techStack: [
-        "Full Stack Developer",
-        "PerchCMS",
-        "AlpineJS",
-        "HTMLX",
+        "Laravel",
+        "Tailwind",
+        "PHP",
+        "Postgresql",
+        "Content",
       ],
-      description:
-        "An e-commerce site for Australian Ceramics Organisation",
-      logo: ParabolLogo,
+      description: "Actualizacion de librerias deprecadas, migracion de base de datos, actualizacion de version de laravel y version de PHP",
+      logo: ConsultlyLogo,
       link: {
-        label: "australianceramics.com",
-        href: "https://australianceramics.com",
+        label: "mapaescolar.abc.gob.ar/diera",
+        href: "https://mapaescolar.abc.gob.ar/diera",
       },
     },
     {
-      title: "Rosie Boylan Website",
+      title: "Curso de Backend con Node.js y Express - Argentina Programa 4.0",
       techStack: [
-        "Full Stack Developer",
-        "Wordpress",
-        "Shopify",
-        "liquid",
-        "Product Manager"
+        "Node.js",
+        "Express",
+        "Javascript",
+        "MongoDB",
       ],
-      description:
-        "An e-commerce site and shopify store for Rosie Boylan Headwear",
-      logo: EvercastLogo,
+      description: "Este repositorio alberga proyectos del curso de Backend con Node.js y Express en el marco de Argentina Programa 4.0. Aquí, aprenderás y explorarás las capacidades de desarrollo backend, arquitectura API RESTful y la interacción con bases de datos tanto relacionales como no relacionales. Los proyectos presentados son el resultado del aprendizaje y la dedicación durante el curso impartido en la Universidad de 3 de Febrero en 2023.",
+      logo: ConsultlyLogo,
       link: {
-        label: "rosieboylan.com",
-        href: "https://rosieboylan.com",
-      },
-    },
-    {
-      title: "Sue Pedley Site",
-      techStack: ["KirbyCMS", "Front End Dev", "AlpineJS"],
-      description:
-        "Portfolio site for Sue Pedley",
-      logo: MobileVikingsLogo,
-      link: {
-        label: "suepedley.com.au",
-        href: "https://suepedley.com.au/",
-      },
-    },
-    {
-      title: "Turpin Crawford Studios Site",
-      techStack: ["Web development", "Photography", "Video","PerchCMS"],
-      description:
-        "Portfolio web development for some lovely artists. Lots of Video and photo.",
-      logo: Howdy,
-      link: {
-        label: "turpincrawfordstudio.com.au/",
-        href: "https://turpincrawfordstudio.com.au/",
-      },
-    },
-    {
-      title: "Skin 8",
-      techStack: ["Web Development", "Static HTML","Pug","Sass"],
-      description:
-        "A nice high end fashion brand site by Lucy Walker",
-      logo: TastyCloudLogo,
-      link: {
-        label: "ianhobbsmedia.com.au/skin8",
-        href: "https://ianhobbsmedia.com.au/skin8",
-      },
-    },
-    {
-      title: "A Thousand Words Video",
-      techStack: ["After Effects"],
-      description:
-        "Exibiton animation of word clouds",
-      logo: AmbitLogo,
-      link: {
-        label: "ianhobbsmedia.com.au/a-thousand-words",
-        href: "https://ianhobbsmedia.com.au/a-thousand-words",
-      },
-    },
-    {
-      title: "Nano-black",
-      techStack: [
-        "Browser Plugin",
-        "HTML hack",
-      ],
-      description:
-        "Makes every picture black",
-      logo: EvercastLogo,
-      link: {
-        label: "github.com/ianhobbs/nano_black",
-        href: "https://github.com/ianhobbs/nano_black",
-      },
-    },
-    {
-      title: "Rejmyre Art Lab Site",
-      techStack: ["Web Development","PerchCMS"],
-      description:
-        "A Swedish art org's home site wonderful research.",
-      logo: BimLogo,
-      
-      link: {
-        label: "rejmyreartlab.org/",
-        href: "https://www.rejmyreartlab.org/",
-      },
-    },
-    {
-      title: "Architectural Photography",
-      techStack: ["Photograpy"],
-      description:
-        "Architectural work",
-      logo: BimLogo,
-      
-      link: {
-        label: "ianhobbsmedia.com.au/architecture",
-        href: "https://ianhobbsmedia.com.au/architecture",
+        label: "https://github.com/Scardigno1982/backend-2023",
+        href: "https://github.com/Scardigno1982/curso-backend-2023",
       },
     },
 
-    {
-      title: "Video Animation",
-      techStack: ["Video"],
-      description:
-        "Video Work",
-      logo: BimLogo,
-      
-      link: {
-        label: "ianhobbsmedia.com.au/video-animation",
-        href: "https://ianhobbsmedia.com.au/video-animation",
-      },
-    },
   ],
 } as const;

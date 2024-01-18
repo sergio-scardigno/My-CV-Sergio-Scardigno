@@ -212,7 +212,7 @@ export default function Page() {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <p className="mt-0 text-sm">
-                      <span className="font-bold">{published.title}</span><br/>
+                      <a href={published.link}><span className="font-bold">{published.title}</span></a><br/>
                       {published.pub}
                     </p>
                     <div className="text-sm tabular-nums text-gray-500">
