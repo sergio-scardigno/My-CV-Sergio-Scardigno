@@ -49,6 +49,7 @@ export const RESUME_DATA = {
   education: [
     {
       school: "EducacionIT",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       degree: "Devops Engineer",
       aptitudes: "Terraform · DevOps · Ansible · Jenkins · Kubernetes · AWS CloudFormation · Docker · GitOps · Amazon Web Services (AWS)",
       start: "2023",
@@ -64,6 +65,7 @@ export const RESUME_DATA = {
     {
       school: "EducacionIT",
       degree: "Introducción a Bases de Datos y SQL",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       aptitudes: "SQL · Microsoft SQL Server · MySQL · PostgreSQL",
       start: "2023",
       end: "2023",
@@ -71,6 +73,7 @@ export const RESUME_DATA = {
     {
       school: "EducacionIT",
       degree: "PHP Arquitectura Avanzada",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       aptitudes: "Programación orientada a objetos (POO) · PHP",
       start: "2022",
       end: "2022",
@@ -78,6 +81,7 @@ export const RESUME_DATA = {
     {
       school: "EducacionIT",
       degree: "React js",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       aptitudes: "JavaScript · React.js",
       start: "2021",
       end: "2021",
@@ -85,6 +89,7 @@ export const RESUME_DATA = {
     {
       school: "EducacionIT",
       degree: " Javascript Desarrollador Avanzado",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       aptitudes: "JavaScript",
       start: "2021",
       end: "2021",
@@ -92,6 +97,7 @@ export const RESUME_DATA = {
     {
       school: "EducacionIT",
       degree: "Python Programming",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       aptitudes: "Python · Programación orientada a objetos (POO) · Programación",
       start: "2021",
       end: "2021",
@@ -99,6 +105,7 @@ export const RESUME_DATA = {
     {
       school: "EducacionIT",
       degree: "Administrador Hosting Avanzado Linux",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       aptitudes: "Administración de DNS · Linux · Servicios de hosting · Servidores web",
       start: "2021",
       end: "2021",
