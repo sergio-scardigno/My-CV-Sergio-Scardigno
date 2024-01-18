@@ -58,6 +58,7 @@ export const RESUME_DATA = {
     {
       school: "Universidad Nacional de Tres de Febrero",
       degree: "Argentina Programa Backend",
+      link: "#",
       aptitudes: "Mongo, Node JS, Express",
       start: "2023",
       end: "2023",
