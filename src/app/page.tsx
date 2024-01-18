@@ -42,7 +42,7 @@ export default function Page() {
                   size="icon"
                   asChild
                 >
-                  <a href={`mailto:${RESUME_DATA.contact.email}`}>
+                  <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank">
                     <MailIcon className="h-4 w-4" />
                   </a>
                 </Button>
@@ -54,7 +54,7 @@ export default function Page() {
                   size="icon"
                   asChild
                 >
-                  <a href={`tel:${RESUME_DATA.contact.tel}`}>
+                  <a href={`tel:${RESUME_DATA.contact.tel}`} target="_blank">
                     <PhoneIcon className="h-4 w-4" />
                   </a>
                 </Button>
@@ -75,12 +75,12 @@ export default function Page() {
             </div>
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
               {RESUME_DATA.contact.email ? (
-                <a href={`mailto:${RESUME_DATA.contact.email}`}>
+                <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank">
                   <span className="underline">{RESUME_DATA.contact.email}</span>
                 </a>
               ) : null}
               {RESUME_DATA.contact.tel ? (
-                <a href={`tel:${RESUME_DATA.contact.tel}`}>
+                <a href={`tel:${RESUME_DATA.contact.tel}`} target="_blank">
                   <span className="underline">{RESUME_DATA.contact.tel}</span>
                 </a>
               ) : null}
@@ -106,7 +106,7 @@ export default function Page() {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={work.link}>
+                      <a className="hover:underline" href={work.link} target="_blank">
                         {work.company}
                       </a>
 
@@ -192,7 +192,7 @@ export default function Page() {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <p className="mt-0 text-sm">
-                      {awards.award}
+                      <a href={awards.link} target="_blank">{awards.award}</a>
                     </p>
                     <div className="text-sm tabular-nums text-gray-500">
                       {awards.year}
@@ -212,7 +212,7 @@ export default function Page() {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <p className="mt-0 text-sm">
-                      <a href={published.link}><span className="font-bold">{published.title}</span></a><br/>
+                      <a href={published.link} target="_blank"><span className="font-bold">{published.title}</span></a><br/>
                       {published.pub}
                     </p>
                     <div className="text-sm tabular-nums text-gray-500">
