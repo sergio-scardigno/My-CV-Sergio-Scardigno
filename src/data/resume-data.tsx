@@ -119,7 +119,7 @@ export const RESUME_DATA = {
       company: "Dirección General de Cultura y Educación de la Provincia de Buenos Aires · Jornada completa",
       link: "https://mapaescolar.abc.gob.ar",
       badges: [],
-      title: "Programador Full-Stack Developer",
+      title: "Programador Full-Stack Developer | Sysadmin | DevOps",
       logo: ParabolLogo,
       start: "2023",
       end: "now",
