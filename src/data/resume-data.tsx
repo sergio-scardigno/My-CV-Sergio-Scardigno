@@ -181,6 +181,12 @@ export const RESUME_DATA = {
 
   published: [
     {
+      title: "Simplificando la Extracción de Números en Documentos PDF con Python",
+      pub: "Este proyecto surge de la necesidad de extraer números específicos de documentos PDF, especialmente cuando estos números están incrustados como imágenes.",
+      year: "2024",
+      link: "https://www.linkedin.com/pulse/simplificando-la-extracci%25C3%25B3n-de-n%25C3%25BAmeros-en-documentos-pdf-scardigno-gftyf/",
+    },
+    {
       title: "Copilot utilizando LM Studio y el plugin Continue en Visual Studio Code",
       pub: "En este artículo, te guiaré a través de los pasos para configurar tu propio copilot utilizando LM Studio y el plugin Continue en Visual Studio Code.",
       year: "2024",
