@@ -105,12 +105,29 @@ export const RESUME_DATA = {
     },
     {
       school: "EducacionIT",
+      degree: "Desarrollo Web en Python & Django",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/47296",
+      aptitudes: "Python · Web frameworks y Django · Tipos de vistas",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
+      degree: "Desarrollo Web en Python & Django",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/51616",
+      aptitudes: "Python · Jupyter Notebook · Data Scientist",
+      start: "2021",
+      end: "2021",
+    },
+    {
+      school: "EducacionIT",
       degree: "Administrador Hosting Avanzado Linux",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
       aptitudes: "Administración de DNS · Linux · Servicios de hosting · Servidores web",
       start: "2021",
       end: "2021",
-    }
+    },
+    
 
 
   ],
@@ -176,22 +193,7 @@ export const RESUME_DATA = {
       award: "PHP Avanzado",
       link: "https://api.educacionit.com/pdf/certificados/Sergio-Scardigno-266821/54910",
       year: "2023",
-    },
-    {
-      award: "Desarrollo Web en Python & Django",
-      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/47296",
-      year: "2023",
-    },
-    {
-      award: "Python Programming",
-      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/45671",
-      year: "2023",
-    },
-    {
-      award: "Python para Analisis de Datos",
-      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/51616",
-      year: "2023",
-    },
+    }
   ],
 
   published: [
