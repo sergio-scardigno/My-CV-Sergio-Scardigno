@@ -177,6 +177,21 @@ export const RESUME_DATA = {
       link: "https://api.educacionit.com/pdf/certificados/Sergio-Scardigno-266821/54910",
       year: "2023",
     },
+    {
+      award: "Desarrollo Web en Python & Django",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/47296",
+      year: "2023",
+    },
+    {
+      award: "Python Programming",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/45671",
+      year: "2023",
+    },
+    {
+      award: "Python para Analisis de Datos",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/51616",
+      year: "2023",
+    },
   ],
 
   published: [
