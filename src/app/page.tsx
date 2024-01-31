@@ -205,7 +205,7 @@ export default function Page() {
         </Section>
         <Section>
           <h2 className="text-xl font-bold mt-3">Publicaciones</h2>
-          <p>Significant contributions in published works / books / websites</p>
+          <p>Contribuciones en trabajos publicados / sitios web / LinkedIn</p>
           {RESUME_DATA.published.map((published) => {
             return (
               <Card key={published.title}>
