@@ -33,6 +33,7 @@ export const RESUME_DATA = {
   contact: {
     email: "sergioscardigno82@gmail.com",
     tel: "+542216038230",
+    asesoramiento: "/asesoramiento",
     social: [
       {
         name: "GitHub",

@@ -4,10 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/command-menu";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, PhoneIcon, Speech } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
+
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
@@ -72,6 +73,18 @@ export default function Page() {
                   </a>
                 </Button>
               ))}
+            </div>
+            <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
+              {RESUME_DATA.contact.asesoramiento ? (
+                <div className="flex items-center space-x-2">
+                  <Button variant="outline" size="icon" asChild>
+                    <a href={`${RESUME_DATA.contact.asesoramiento}`} target="_blank">
+                      <Speech className="h-4 w-4" />
+                    </a>
+                  </Button>
+                  <span>Agendar un asesoramiento en línea</span>
+                </div>
+              ) : null}
             </div>
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
               {RESUME_DATA.contact.email ? (
