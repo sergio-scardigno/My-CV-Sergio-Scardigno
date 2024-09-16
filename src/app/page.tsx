@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
 
-
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
   description: RESUME_DATA.summary,
@@ -43,7 +42,10 @@ export default function Page() {
                   size="icon"
                   asChild
                 >
-                  <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank">
+                  <a
+                    href={`mailto:${RESUME_DATA.contact.email}`}
+                    target="_blank"
+                  >
                     <MailIcon className="h-4 w-4" />
                   </a>
                 </Button>
@@ -74,7 +76,7 @@ export default function Page() {
                 </Button>
               ))}
             </div>
-            <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
+            {/* <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
               {RESUME_DATA.contact.asesoramiento ? (
                 <div className="flex items-center space-x-2">
                   <Button variant="outline" size="icon" asChild>
@@ -85,7 +87,7 @@ export default function Page() {
                   <span>Agendar un asesoramiento en línea</span>
                 </div>
               ) : null}
-            </div>
+            </div> */}
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
               {RESUME_DATA.contact.email ? (
                 <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank">
@@ -119,7 +121,11 @@ export default function Page() {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={work.link} target="_blank">
+                      <a
+                        className="hover:underline"
+                        href={work.link}
+                        target="_blank"
+                      >
                         {work.company}
                       </a>
 
@@ -155,16 +161,27 @@ export default function Page() {
           <h2 className="text-xl font-bold">Educación</h2>
           {RESUME_DATA.education.map((education) => {
             return (
-              <Card key={education.school} className="bg-white p-4 rounded-md shadow-md">
+              <Card
+                key={education.school}
+                className="rounded-md bg-white p-4 shadow-md"
+              >
                 <CardHeader className="mb-4">
                   <div className="flex items-center justify-between gap-x-1 text-base">
                     <div>
-                      <a href={education.link} target="_blank"><h3 className="font-semibold text-xl">{education.school}</h3></a>
-                      <div className="flex items-center text-gray-500 text-xs">
-                      {education.start} - {education.end}
+                      <a href={education.link} target="_blank">
+                        <h3 className="text-xl font-semibold">
+                          {education.school}
+                        </h3>
+                      </a>
+                      <div className="flex items-center text-xs text-gray-500">
+                        {education.start} - {education.end}
                       </div>
-                      <CardContent className="mt-2">{education.degree}</CardContent>
-                      <div className="text-gray-500 text-xs">{education.aptitudes}</div>
+                      <CardContent className="mt-2">
+                        {education.degree}
+                      </CardContent>
+                      <div className="text-xs text-gray-500">
+                        {education.aptitudes}
+                      </div>
                     </div>
                   </div>
                 </CardHeader>
@@ -198,14 +215,18 @@ export default function Page() {
           </div>
         </Section>
         <Section>
-          <h2 className="text-xl font-bold mt-3">Licencias y certificaciones</h2>
+          <h2 className="mt-3 text-xl font-bold">
+            Licencias y certificaciones
+          </h2>
           {RESUME_DATA.awards.map((awards) => {
             return (
               <Card key={awards.award}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <p className="mt-0 text-sm">
-                      <a href={awards.link} target="_blank">{awards.award}</a>
+                      <a href={awards.link} target="_blank">
+                        {awards.award}
+                      </a>
                     </p>
                     <div className="text-sm tabular-nums text-gray-500">
                       {awards.year}
@@ -217,7 +238,7 @@ export default function Page() {
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold mt-3">Publicaciones</h2>
+          <h2 className="mt-3 text-xl font-bold">Publicaciones</h2>
           <p>Contribuciones en trabajos publicados / sitios web / LinkedIn</p>
           {RESUME_DATA.published.map((published) => {
             return (
@@ -225,7 +246,10 @@ export default function Page() {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <p className="mt-0 text-sm">
-                      <a href={published.link} target="_blank"><span className="font-bold">{published.title}</span></a><br/>
+                      <a href={published.link} target="_blank">
+                        <span className="font-bold">{published.title}</span>
+                      </a>
+                      <br />
                       {published.pub}
                     </p>
                     <div className="text-sm tabular-nums text-gray-500">
