@@ -21,13 +21,15 @@ export default function Page() {
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex gap-x-1 pr-6 font-mono text-sm text-muted-foreground print:hidden">
-            <Image
-              src="/myqr.png"
-              width={100}
-              height={100}
-              alt="Whatsapp de Sergio Scardigno"
-              className="rounded-lg shadow-lg"
-            />
+            <a href="https://wa.me/qr/47SVC4PAQQ2KN1">
+              <Image
+                src="/myqr.png"
+                width={100}
+                height={100}
+                alt="Whatsapp de Sergio Scardigno"
+                className="rounded-lg shadow-lg"
+              />
+            </a>
           </div>
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
