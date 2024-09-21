@@ -8,6 +8,7 @@ import { GlobeIcon, MailIcon, PhoneIcon, Speech } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
@@ -19,6 +20,15 @@ export default function Page() {
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
         <div className="flex items-center justify-between">
+          <div className="flex gap-x-1 pr-6 font-mono text-sm text-muted-foreground print:hidden">
+            <Image
+              src="/myqr.png"
+              width={100}
+              height={100}
+              alt="Whatsapp de Sergio Scardigno"
+              className="rounded-lg shadow-lg"
+            />
+          </div>
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
             <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
@@ -76,18 +86,7 @@ export default function Page() {
                 </Button>
               ))}
             </div>
-            {/* <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
-              {RESUME_DATA.contact.asesoramiento ? (
-                <div className="flex items-center space-x-2">
-                  <Button variant="outline" size="icon" asChild>
-                    <a href={`${RESUME_DATA.contact.asesoramiento}`} target="_blank">
-                      <Speech className="h-4 w-4" />
-                    </a>
-                  </Button>
-                  <span>Agendar un asesoramiento en línea</span>
-                </div>
-              ) : null}
-            </div> */}
+
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
               {RESUME_DATA.contact.email ? (
                 <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank">
