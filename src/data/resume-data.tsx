@@ -171,30 +171,41 @@ export const RESUME_DATA = {
 
   awards: [
     {
+      award: "Implement Load Balancing on Compute Engine Skill Badge",
+      link: "https://www.credly.com/badges/bb904419-d430-44d2-9803-ea939e519de6/",
+      year: "2024",
+      url: "/img/implement-load-balancing-on-compute-engine-skill-ba.png",
+    },
+    {
       award: "AWS Knowledge: Amazon EKS",
       link: "https://www.credly.com/badges/e2ee97e6-1fb5-4d82-a4cc-5bf46656387d/",
       year: "2023",
+      url: "/img/aws.png",
     },
     {
       award:
         "Certificado de asistencia al curso: Desarrollo rápido de aplicaciones con Low Code, organizado por DonWeb (Marzo-Abril 2023)",
       link: "https://guias.donweb.com/certificados-curso-lowcode-2023/sergioscardigno82_gmail_com",
       year: "2023",
+      url: "/img/donweb.png",
     },
     {
       award: "Curso Online de Vagrant",
       link: "https://openwebinars.net/cert/nw5Yz?r=6e5906d6e&t=1626095498",
       year: "2023",
+      url: "/img/vagrant.png",
     },
     {
       award: "Reacj.js Avanzado",
       link: "https://api.educacionit.com/pdf/certificados/Sergio-Scardigno-266821/50452",
       year: "2023",
+      url: "/img/react.png",
     },
     {
       award: "PHP Avanzado",
       link: "https://api.educacionit.com/pdf/certificados/Sergio-Scardigno-266821/54910",
       year: "2023",
+      url: "/img/php.png",
     },
   ],
 

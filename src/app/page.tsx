@@ -216,21 +216,32 @@ export default function Page() {
           </div>
         </Section>
         <Section>
-          <h2 className="mt-3 text-xl font-bold">
-            Licencias y certificaciones
-          </h2>
+          <h2 className="mt-3 text-xl font-bold">Certificaciones</h2>
           {RESUME_DATA.awards.map((awards) => {
             return (
               <Card key={awards.award}>
                 <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <p className="mt-0 text-sm">
-                      <a href={awards.link} target="_blank">
-                        {awards.award}
-                      </a>
-                    </p>
-                    <div className="text-sm tabular-nums text-gray-500">
-                      {awards.year}
+                  <div className="flex items-start gap-x-4 text-base">
+                    <Image
+                      src={awards.url}
+                      width={100}
+                      height={100}
+                      alt="Whatsapp de Sergio Scardigno"
+                      className="rounded-lg shadow-lg"
+                    />
+                    <div className="flex flex-col justify-start">
+                      <p className="text-sm">
+                        <a
+                          href={awards.link}
+                          target="_blank"
+                          className="text-black-500 hover:underline"
+                        >
+                          {awards.award}
+                        </a>
+                      </p>
+                      <div className="text-sm tabular-nums text-gray-500">
+                        {awards.year}
+                      </div>
                     </div>
                   </div>
                 </CardHeader>
