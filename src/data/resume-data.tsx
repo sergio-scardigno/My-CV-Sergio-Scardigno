@@ -28,7 +28,7 @@ export const RESUME_DATA = {
   about: "DevOps Engineer | Backend Developer | PHP Developer",
   summary:
     "Como profesional en constante evolución en el ámbito de la tecnología, mi enfoque actual está en profundizar mis conocimientos y habilidades en el desarrollo full stack, tanto en backend como en frontend. Con experiencia en tecnologías como Laravel, Node.js, React.js y Angular, he diseñado y desarrollado aplicaciones escalables, seguras y eficientes. Mis habilidades abarcan desde la creación de APIs y la optimización de bases de datos, hasta el desarrollo de interfaces de usuario dinámicas y optimizadas para una excelente experiencia. He trabajado en todos los aspectos del ciclo de vida de desarrollo de software, incluyendo pruebas, depuración, despliegue y mantenimiento continuo. Certificaciones en AWS y React.js respaldan mi compromiso con la mejora continua y la adopción de nuevas tecnologías. Apasionado por la automatización y la eficiencia en los procesos de desarrollo, mi objetivo es seguir creando soluciones que aporten valor a los proyectos y optimicen su rendimiento.",
-  avatarUrl: "https://avatars.githubusercontent.com/u/22529107?v=4",
+  avatarUrl: "/img/sergio.png",
   personalWebsiteUrl: "#",
   contact: {
     email: "sergioscardigno82@gmail.com",
