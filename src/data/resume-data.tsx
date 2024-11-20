@@ -28,7 +28,7 @@ export const RESUME_DATA = {
   about: "DevOps Engineer | Backend Developer | PHP Developer",
   summary:
     "Como profesional en constante evolución en el ámbito de la tecnología, mi enfoque actual está en profundizar mis conocimientos y habilidades en el desarrollo full stack, tanto en backend como en frontend. Con experiencia en tecnologías como Laravel, Node.js, React.js y Angular, he diseñado y desarrollado aplicaciones escalables, seguras y eficientes. Mis habilidades abarcan desde la creación de APIs y la optimización de bases de datos, hasta el desarrollo de interfaces de usuario dinámicas y optimizadas para una excelente experiencia. He trabajado en todos los aspectos del ciclo de vida de desarrollo de software, incluyendo pruebas, depuración, despliegue y mantenimiento continuo. Certificaciones en AWS y React.js respaldan mi compromiso con la mejora continua y la adopción de nuevas tecnologías. Apasionado por la automatización y la eficiencia en los procesos de desarrollo, mi objetivo es seguir creando soluciones que aporten valor a los proyectos y optimicen su rendimiento.",
-  avatarUrl: "https://avatars.githubusercontent.com/scardigno1982",
+  avatarUrl: "https://avatars.githubusercontent.com/u/22529107?v=4",
   personalWebsiteUrl: "#",
   contact: {
     email: "sergioscardigno82@gmail.com",
@@ -48,6 +48,22 @@ export const RESUME_DATA = {
     ],
   },
   education: [
+    {
+      school: "Platzi",
+      link: "https://platzi.com/p/sergios_plat/curso/8036-c-sharp-poo/diploma/detalle/",
+      degree: "Programación Orientada a Objetos con C#",
+      aptitudes: "C#",
+      start: "2024",
+      end: "2024",
+    },
+    {
+      school: "Platzi",
+      link: "https://platzi.com/p/sergios_plat/curso/3086-csharp/diploma/detalle/",
+      degree: "Curso Básico de Programación con C#",
+      aptitudes: "C#",
+      start: "2024",
+      end: "2024",
+    },
     {
       school: "EducacionIT",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
@@ -170,6 +186,18 @@ export const RESUME_DATA = {
   ],
 
   awards: [
+    {
+      award: "Programación Orientada a Objetos con C#",
+      link: "https://platzi.com/p/sergios_plat/curso/8036-c-sharp-poo/diploma/detalle/",
+      year: "2024",
+      url: "/img/objetosc.png",
+    },
+    {
+      award: "Curso Básico de Programación con C#",
+      link: "https://platzi.com/p/sergios_plat/curso/3086-csharp/diploma/detalle/",
+      year: "2024",
+      url: "/img/basicoc.png",
+    },
     {
       award: "Implement Load Balancing on Compute Engine Skill Badge",
       link: "https://www.credly.com/badges/bb904419-d430-44d2-9803-ea939e519de6/",
