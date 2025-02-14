@@ -240,6 +240,13 @@ export const RESUME_DATA = {
   published: [
     {
       title:
+        "Migrando VMs de Proxmox a VMware ESXi: Una Solución Práctica Usando StarWind V2V Converter",
+      pub: "Recientemente, me enfrenté al desafío de migrar varias máquinas virtuales (VM) desde un entorno Proxmox a VMware ESXi . Este proceso no solo implicó mover datos, sino también garantizar que las configuraciones y funcionalidades de cada VM se mantuvieran intactas. ",
+      year: "2025",
+      link: "https://bit.ly/4jUYz34",
+    },
+    {
+      title:
         "Simplificando la Extracción de Números en Documentos PDF con Python",
       pub: "Este proyecto surge de la necesidad de extraer números específicos de documentos PDF, especialmente cuando estos números están incrustados como imágenes.",
       year: "2024",
