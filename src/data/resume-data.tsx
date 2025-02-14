@@ -149,18 +149,18 @@ export const RESUME_DATA = {
     },
   ],
   work: [
-    // {
-    //   company:
-    //     "Dirección General de Cultura y Educación de la Provincia de Buenos Aires · Jornada completa",
-    //   link: "https://mapaescolar.abc.gob.ar",
-    //   badges: [],
-    //   title: "Programador Full-Stack Developer | Sysadmin | DevOps",
-    //   logo: ParabolLogo,
-    //   start: "2023",
-    //   end: "now",
-    //   description:
-    //     "Administración de bases de datos SQL y Postgresql, Desarrollo de proyectos Angular y web. Implementacion de Jelkins para la automatizacion de proyectos.",
-    // },
+    {
+      company:
+        "Dirección General de Cultura y Educación de la Provincia de Buenos Aires · Jornada completa",
+      link: "https://mapaescolar.abc.gob.ar",
+      badges: [],
+      title: "Programador Full-Stack Developer | Sysadmin | DevOps",
+      logo: ParabolLogo,
+      start: "2023",
+      end: "now",
+      description:
+        "Administración de bases de datos SQL y Postgresql, Desarrollo de proyectos Angular y web. Implementacion de Jelkins para la automatizacion de proyectos.",
+    },
     {
       company: "Usina Estrategias digitales · Part-time",
       link: "#",
@@ -272,19 +272,19 @@ export const RESUME_DATA = {
       year: "2023",
       link: "https://bit.ly/3U5wlZ5",
     },
-    // {
-    //   title: "Conectando Ubuntu 22.04 a SQL Server 2000: Superando Desafíos",
-    //   pub: "¿Te has enfrentado a la tarea aparentemente imposible de conectar Ubuntu 22.04 a una base de datos SQL Server 2000? No estás solo. La descontinuación de los conectores ODBC para esta antigua versión de SQL Server y la obsolescencia de los repositorios de Ubuntu 16.04 pueden hacer que esta tarea parezca un callejón sin salida. Pero no te preocupes, ¡aquí está la solución!",
-    //   year: "2023",
-    //   link: "https://www.linkedin.com/pulse/conectando-ubuntu-2204-sql-server-2000-superando-sergio-scardigno%3FtrackingId=eKnJ9deG2EZPGrAcajPAVg%253D%253D/?trackingId=eKnJ9deG2EZPGrAcajPAVg%3D%3D",
-    // },
-    // {
-    //   title:
-    //     "Reemplazando la Librería Deprecada ultraware/roles en PHP 8.2.8 y Laravel 10: Creando una Solución Personalizada",
-    //   pub: "La librería ultraware/roles ha sido una herramienta invaluable para manejar roles y permisos en nuestras aplicaciones durante mucho tiempo. Sin embargo, como todas las cosas en el mundo de la tecnología, ha llegado el momento en que ha sido marcada como deprecada. Esto nos obliga a buscar nuevas soluciones, y en este artículo, te mostraré cómo reemplacé esta librería con mi propio código en Laravel 10.",
-    //   year: "2023",
-    //   link: "https://www.linkedin.com/pulse/reemplazando-la-librer%25C3%25ADa-deprecada-ultrawareroles-en-php-scardigno-zeeaf/",
-    // },
+    {
+      title: "Conectando Ubuntu 22.04 a SQL Server 2000: Superando Desafíos",
+      pub: "¿Te has enfrentado a la tarea aparentemente imposible de conectar Ubuntu 22.04 a una base de datos SQL Server 2000? No estás solo. La descontinuación de los conectores ODBC para esta antigua versión de SQL Server y la obsolescencia de los repositorios de Ubuntu 16.04 pueden hacer que esta tarea parezca un callejón sin salida. Pero no te preocupes, ¡aquí está la solución!",
+      year: "2023",
+      link: "https://www.linkedin.com/pulse/conectando-ubuntu-2204-sql-server-2000-superando-sergio-scardigno%3FtrackingId=eKnJ9deG2EZPGrAcajPAVg%253D%253D/?trackingId=eKnJ9deG2EZPGrAcajPAVg%3D%3D",
+    },
+    {
+      title:
+        "Reemplazando la Librería Deprecada ultraware/roles en PHP 8.2.8 y Laravel 10: Creando una Solución Personalizada",
+      pub: "La librería ultraware/roles ha sido una herramienta invaluable para manejar roles y permisos en nuestras aplicaciones durante mucho tiempo. Sin embargo, como todas las cosas en el mundo de la tecnología, ha llegado el momento en que ha sido marcada como deprecada. Esto nos obliga a buscar nuevas soluciones, y en este artículo, te mostraré cómo reemplacé esta librería con mi propio código en Laravel 10.",
+      year: "2023",
+      link: "https://www.linkedin.com/pulse/reemplazando-la-librer%25C3%25ADa-deprecada-ultrawareroles-en-php-scardigno-zeeaf/",
+    },
   ],
 
   // end insert
@@ -350,35 +350,35 @@ export const RESUME_DATA = {
         href: "https://github.com/Scardigno1982/TP-8-Kubernetes",
       },
     },
-    // {
-    //   title: "Mapa Escolar",
-    //   techStack: [
-    //     "Angular",
-    //     "Tailwind",
-    //     "HTML",
-    //     "Typescript",
-    //     "Content",
-    //     "Full Stack Developer",
-    //   ],
-    //   description:
-    //     "Replicando en Angular el proyecto ABC de la Dirección General de Cultura y Educación de la Provincia de Buenos Aires",
-    //   logo: ConsultlyLogo,
-    //   link: {
-    //     label: "mapaescolar.abc.gob.ar",
-    //     href: "https://mapaescolar.abc.gob.ar",
-    //   },
-    // },
-    // {
-    //   title: "Diera",
-    //   techStack: ["Laravel", "Tailwind", "PHP", "Postgresql", "Content"],
-    //   description:
-    //     "Actualizacion de librerias deprecadas, migracion de base de datos, actualizacion de version de laravel y version de PHP",
-    //   logo: ConsultlyLogo,
-    //   link: {
-    //     label: "mapaescolar.abc.gob.ar/diera",
-    //     href: "https://mapaescolar.abc.gob.ar/diera",
-    //   },
-    // },
+    {
+      title: "Mapa Escolar",
+      techStack: [
+        "Angular",
+        "Tailwind",
+        "HTML",
+        "Typescript",
+        "Content",
+        "Full Stack Developer",
+      ],
+      description:
+        "Replicando en Angular el proyecto ABC de la Dirección General de Cultura y Educación de la Provincia de Buenos Aires",
+      logo: ConsultlyLogo,
+      link: {
+        label: "mapaescolar.abc.gob.ar",
+        href: "https://mapaescolar.abc.gob.ar",
+      },
+    },
+    {
+      title: "Diera",
+      techStack: ["Laravel", "Tailwind", "PHP", "Postgresql", "Content"],
+      description:
+        "Actualizacion de librerias deprecadas, migracion de base de datos, actualizacion de version de laravel y version de PHP",
+      logo: ConsultlyLogo,
+      link: {
+        label: "mapaescolar.abc.gob.ar/diera",
+        href: "https://mapaescolar.abc.gob.ar/diera",
+      },
+    },
     {
       title: "Curso de Backend con Node.js y Express - Argentina Programa 4.0",
       techStack: ["Node.js", "Express", "Javascript", "MongoDB"],
