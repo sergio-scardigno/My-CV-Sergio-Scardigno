@@ -240,6 +240,13 @@ export const RESUME_DATA = {
   published: [
     {
       title:
+        "Herramienta de Verificación de Firmas en PDF para Profesionales Legales",
+      pub: "En el ámbito legal, la validez de los documentos firmados depende de si las firmas cumplen con los requisitos normativos. Una firma insertada como imagen simple (p. ej., PNG/JPG) carece de validez legal a menos que esté certificada por un escribano público.",
+      year: "2025",
+      link: "https://bit.ly/3DbV5ZD",
+    },
+    {
+      title:
         "Migrando VMs de Proxmox a VMware ESXi: Una Solución Práctica Usando StarWind V2V Converter",
       pub: "Recientemente, me enfrenté al desafío de migrar varias máquinas virtuales (VM) desde un entorno Proxmox a VMware ESXi . Este proceso no solo implicó mover datos, sino también garantizar que las configuraciones y funcionalidades de cada VM se mantuvieran intactas. ",
       year: "2025",
