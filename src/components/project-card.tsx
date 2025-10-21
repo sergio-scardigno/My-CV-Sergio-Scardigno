@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { ArrowUpRight } from "lucide-react";
 
 interface Props {
   title: string;
@@ -16,43 +17,37 @@ interface Props {
 
 export function ProjectCard({ title, description, tags, link }: Props) {
   return (
-    <Card className="flex flex-col overflow-hidden border border-muted p-3">
-      <CardHeader className="">
-        <div className="space-y-1">
-          <CardTitle className="text-base">
-            {link ? (
-              <a
-                href={link}
-                target="_blank"
-                className="inline-flex items-center gap-1 hover:underline"
-              >
-                {title}{" "}
-                <span className="h-1 w-1 rounded-full bg-green-500"></span>
-              </a>
-            ) : (
-              title
-            )}
-          </CardTitle>
-          <div className="hidden font-mono text-xs underline print:visible">
-            {link?.replace("https://", "").replace("www.", "").replace("/", "")}
-          </div>
-          <CardDescription className="font-mono text-xs">
-            {description}
-          </CardDescription>
-        </div>
-      </CardHeader>
-      <CardContent className="mt-auto flex">
-        <div className="mt-2 flex flex-wrap gap-1">
-          {tags.map((tag) => (
-            <Badge
-              className="px-1 py-0 text-[10px]"
-              variant="secondary"
-              key={tag}
+    <Card className="flex h-full flex-col gap-5 rounded-2xl border border-border/80 bg-card/80 p-5 shadow-sm transition-shadow hover:shadow-md print:border print:bg-transparent print:shadow-none">
+      <CardHeader className="space-y-2 p-0">
+        <CardTitle className="text-base font-semibold text-foreground">
+          {link ? (
+            <a
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 transition-colors hover:text-foreground"
             >
-              {tag}
-            </Badge>
-          ))}
-        </div>
+              {title}
+              <ArrowUpRight className="h-4 w-4 translate-y-[1px] text-muted-foreground transition-transform group-hover:translate-y-0 group-hover:text-foreground" />
+            </a>
+          ) : (
+            title
+          )}
+        </CardTitle>
+        <CardDescription className="text-sm leading-relaxed text-muted-foreground">
+          {description}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="mt-auto flex flex-wrap gap-2 p-0 font-sans text-[11px] text-muted-foreground">
+        {tags.map((tag) => (
+          <Badge
+            className="rounded-full border border-border px-3 py-1 uppercase tracking-[0.12em]"
+            variant="outline"
+            key={tag}
+          >
+            {tag}
+          </Badge>
+        ))}
       </CardContent>
     </Card>
   );

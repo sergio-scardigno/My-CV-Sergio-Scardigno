@@ -1,292 +1,127 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CommandMenu } from "@/components/command-menu";
-import { Metadata } from "next";
-import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon, Speech } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { RESUME_DATA } from "@/data/resume-data";
-import { ProjectCard } from "@/components/project-card";
-import Image from "next/image";
-
-export const metadata: Metadata = {
-  title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
-  description: RESUME_DATA.summary,
-};
-
 export default function Page() {
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
-        <div className="flex items-center justify-between">
-          <div className="flex gap-x-1 pr-6 font-mono text-sm text-muted-foreground print:hidden">
-            <a href="https://wa.me/qr/47SVC4PAQQ2KN1">
-              <Image
-                src="/myqr.png"
-                width={100}
-                height={100}
-                alt="Whatsapp de Sergio Scardigno"
-                className="rounded-lg shadow-lg"
-              />
-            </a>
-          </div>
-          <div className="flex-1 space-y-1.5">
-            <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
-            <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
-              {RESUME_DATA.about}
-            </p>
-            <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
-              <a
-                className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
-                href={RESUME_DATA.locationLink}
-                target="_blank"
-              >
-                <GlobeIcon className="h-3 w-3" />
-                {RESUME_DATA.location}
-              </a>
-            </p>
-            <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
-              {RESUME_DATA.contact.email ? (
-                <Button
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
-                >
-                  <a
-                    href={`mailto:${RESUME_DATA.contact.email}`}
-                    target="_blank"
-                  >
-                    <MailIcon className="h-4 w-4" />
-                  </a>
-                </Button>
-              ) : null}
-              {/* {RESUME_DATA.contact.tel ? (
-                <Button
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
-                >
-                  <a href={`tel:${RESUME_DATA.contact.tel}`} target="_blank">
-                    <PhoneIcon className="h-4 w-4" />
-                  </a>
-                </Button>
-              ) : null} */}
-              {RESUME_DATA.contact.social.map((social) => (
-                <Button
-                  key={social.name}
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
-                >
-                  <a href={social.url} target="_blank">
-                    <social.icon className="h-4 w-4" />
-                  </a>
-                </Button>
-              ))}
-            </div>
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-6 py-16 text-white">
+      {/* Background gradients */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-x-0 top-[-20%] mx-auto h-96 max-w-3xl rounded-full bg-gradient-to-br from-slate-500/30 via-white/10 to-transparent blur-3xl" />
+        <div className="absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-gradient-to-br from-[#6366F1]/40 via-[#0EA5E9]/20 to-transparent blur-3xl" />
+        <div className="absolute -left-24 top-20 h-64 w-64 rounded-full bg-gradient-to-br from-[#22D3EE]/30 via-transparent to-transparent blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_55%)]" />
+      </div>
 
-            <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
-              {RESUME_DATA.contact.email ? (
-                <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank">
-                  <span className="underline">{RESUME_DATA.contact.email}</span>
-                </a>
-              ) : null}
-              {RESUME_DATA.contact.tel ? (
-                <a href={`tel:${RESUME_DATA.contact.tel}`} target="_blank">
-                  <span className="underline">{RESUME_DATA.contact.tel}</span>
-                </a>
-              ) : null}
-            </div>
+      {/* Pricing container */}
+      <div className="relative w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* FREE PLAN */}
+        <div className="rounded-3xl border border-white/10 bg-white/5 px-10 py-14 text-center shadow-[0_40px_120px_rgba(15,23,42,0.4)] backdrop-blur-xl flex flex-col">
+          <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-sm font-semibold uppercase tracking-[0.35em] text-white/60">
+            <svg
+              className="h-5 w-5 text-white/70"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 3l9 18H3l9-18z" />
+            </svg>
           </div>
-
-          <Avatar className="h-28 w-28">
-            <AvatarImage alt={RESUME_DATA.name} src={RESUME_DATA.avatarUrl} />
-            <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
-          </Avatar>
-        </div>
-        <Section>
-          <h2 className="text-xl font-bold">Sobre mi</h2>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
-            {RESUME_DATA.summary}
+          <h2 className="text-2xl font-semibold tracking-tight mb-3">Free</h2>
+          <p className="text-sm leading-relaxed text-white/60 mb-2">
+            Your free plan has reached its limit.
           </p>
-        </Section>
-        <Section>
-          <h2 className="text-xl font-bold">Experiencia laboral</h2>
-          {RESUME_DATA.work.map((work) => {
-            return (
-              <Card key={work.company}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a
-                        className="hover:underline"
-                        href={work.link}
-                        target="_blank"
-                      >
-                        {work.company}
-                      </a>
+          <p className="text-sm leading-relaxed text-white/60 mb-6">
+            Keep your site online, but upgrade to unlock more deploys, analytics, and collaboration tools.
+          </p>
+          <p className="text-white font-medium mb-8">Free tier (limited)</p>
+          <ul className="space-y-2 text-sm text-white/70 flex-1">
+            <li>Automatic deploys</li>
+            <li>Global CDN</li>
+            <li>Basic analytics</li>
+            <li>Email support</li>
+          </ul>
+          <button className="mt-8 w-full rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/70 transition hover:border-white/40 hover:text-white sm:w-auto">
+            Plan reached limit
+          </button>
+        </div>
 
-                      <span className="inline-flex gap-x-1">
-                        {work.badges.map((badge) => (
-                          <Badge
-                            variant="secondary"
-                            className="align-middle text-xs"
-                            key={badge}
-                          >
-                            {badge}
-                          </Badge>
-                        ))}
-                      </span>
-                    </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
-                      {work.start} - {work.end}
-                    </div>
-                  </div>
-
-                  <h4 className="font-mono text-sm leading-none">
-                    {work.title}
-                  </h4>
-                </CardHeader>
-                <CardContent className="mt-2 text-xs">
-                  {work.description}
-                </CardContent>
-              </Card>
-            );
-          })}
-        </Section>
-        <Section>
-          <h2 className="text-xl font-bold">Educación</h2>
-          {RESUME_DATA.education.map((education) => {
-            return (
-              <Card
-                key={education.school}
-                className="rounded-md bg-white p-4 shadow-md"
-              >
-                <CardHeader className="mb-4">
-                  <div className="flex items-center justify-between gap-x-1 text-base">
-                    <div>
-                      <a href={education.link} target="_blank">
-                        <h3 className="text-xl font-semibold">
-                          {education.school}
-                        </h3>
-                      </a>
-                      <div className="flex items-center text-xs text-gray-500">
-                        {education.start} - {education.end}
-                      </div>
-                      <CardContent className="mt-2">
-                        {education.degree}
-                      </CardContent>
-                      <div className="text-xs text-gray-500">
-                        {education.aptitudes}
-                      </div>
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            );
-          })}
-        </Section>
-        <Section>
-          <h2 className="text-xl font-bold">Skills</h2>
-          <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.skills.map((skill) => {
-              return <Badge key={skill}>{skill}</Badge>;
-            })}
+        {/* PRO PLAN */}
+        <div className="relative rounded-3xl border border-white/10 bg-white/10 px-10 py-14 text-center shadow-[0_40px_120px_rgba(255,255,255,0.15)] backdrop-blur-xl flex flex-col">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white text-black text-xs font-semibold uppercase px-3 py-1 tracking-wide">
+            Popular
           </div>
-        </Section>
-
-        <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Proyectos</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
-            {RESUME_DATA.projects.map((project) => {
-              return (
-                <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.techStack}
-                  link={"link" in project ? project.link.href : undefined}
-                />
-              );
-            })}
+          <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-sm font-semibold uppercase tracking-[0.35em] text-white/60">
+            <svg
+              className="h-5 w-5 text-white/70"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 3l9 18H3l9-18z" />
+            </svg>
           </div>
-        </Section>
-        <Section>
-          <h2 className="mt-3 text-xl font-bold">Certificaciones</h2>
-          {RESUME_DATA.awards.map((awards) => {
-            return (
-              <Card key={awards.award}>
-                <CardHeader>
-                  <div className="flex items-start gap-x-4 text-base">
-                    <Image
-                      src={awards.url}
-                      width={100}
-                      height={100}
-                      alt="Whatsapp de Sergio Scardigno"
-                      className="rounded-lg shadow-lg"
-                    />
-                    <div className="flex flex-col justify-start">
-                      <p className="text-sm">
-                        <a
-                          href={awards.link}
-                          target="_blank"
-                          className="text-black-500 hover:underline"
-                        >
-                          {awards.award}
-                        </a>
-                      </p>
-                      <div className="text-sm tabular-nums text-gray-500">
-                        {awards.year}
-                      </div>
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            );
-          })}
-        </Section>
-        <Section>
-          <h2 className="mt-3 text-xl font-bold">Publicaciones</h2>
-          <p>Contribuciones en trabajos publicados / sitios web / LinkedIn</p>
-          {RESUME_DATA.published.map((published) => {
-            return (
-              <Card key={published.title}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <p className="mt-0 text-sm">
-                      <a href={published.link} target="_blank">
-                        <span className="font-bold">{published.title}</span>
-                      </a>
-                      <br />
-                      {published.pub}
-                    </p>
-                    <div className="text-sm tabular-nums text-gray-500">
-                      {published.year}
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            );
-          })}
-        </Section>
-      </section>
+          <h2 className="text-2xl font-semibold tracking-tight mb-3">Pro</h2>
+          <p className="text-sm leading-relaxed text-white/60 mb-2">
+            Everything you need to scale your workflow and deploy faster.
+          </p>
+          <p className="text-sm leading-relaxed text-white/60 mb-6">
+            Includes priority builds, team collaboration, and advanced usage controls.
+          </p>
+          <p className="text-white font-medium mb-8">$20/mo + usage</p>
+          <ul className="space-y-2 text-sm text-white/70 flex-1">
+            <li>All Free features</li>
+            <li>Priority builds · no queues</li>
+            <li>Team collaboration</li>
+            <li>Cold start prevention</li>
+            <li>$20 usage credit included</li>
+            <li>Custom domains & analytics</li>
+          </ul>
+          <button className="mt-8 w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] sm:w-auto">
+            Upgrade to Pro
+          </button>
+        </div>
 
-      <CommandMenu
-        links={[
-          {
-            url: RESUME_DATA.personalWebsiteUrl,
-            title: "Personal Website",
-          },
-          ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-            url: socialMediaLink.url,
-            title: socialMediaLink.name,
-          })),
-        ]}
-      />
+        {/* AGENCY PLAN */}
+        <div className="rounded-3xl border border-white/10 bg-white/5 px-10 py-14 text-center shadow-[0_40px_120px_rgba(15,23,42,0.4)] backdrop-blur-xl flex flex-col">
+          <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-sm font-semibold uppercase tracking-[0.35em] text-white/60">
+            <svg
+              className="h-5 w-5 text-white/70"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 3l9 18H3l9-18z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-semibold tracking-tight mb-3">Agency</h2>
+          <p className="text-sm leading-relaxed text-white/60 mb-2">
+            For teams managing multiple clients or large-scale web apps.
+          </p>
+          <p className="text-sm leading-relaxed text-white/60 mb-6">
+            Includes advanced analytics, multi-region deploys, and dedicated support.
+          </p>
+          <p className="text-white font-medium mb-8">Custom pricing</p>
+          <ul className="space-y-2 text-sm text-white/70 flex-1">
+            <li>All Pro features</li>
+            <li>Advanced access controls</li>
+            <li>Multi-region deploys</li>
+            <li>Dedicated account manager</li>
+            <li>99.99% SLA</li>
+            <li>Custom onboarding</li>
+          </ul>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <button className="w-full rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition sm:w-auto">
+              Request demo
+            </button>
+            <button className="w-full rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/70 hover:border-white/40 hover:text-white transition sm:w-auto">
+              Contact Sales
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer pulse text */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.3em] text-white/30">
+        <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-[#F97316]" />
+        <span>Upgrade required to continue</span>
+      </div>
     </main>
   );
 }
