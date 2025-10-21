@@ -23,7 +23,9 @@ export default function Page() {
               <path d="M12 3l9 18H3l9-18z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-semibold tracking-tight mb-3">Free</h2>
+          <h2 className="text-2xl font-semibold tracking-tight mb-3 text-white">
+            Free
+          </h2>
           <p className="text-sm leading-relaxed text-white/60 mb-2">
             Your free plan has reached its limit.
           </p>
@@ -57,7 +59,9 @@ export default function Page() {
               <path d="M12 3l9 18H3l9-18z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-semibold tracking-tight mb-3">Pro</h2>
+          <h2 className="text-2xl font-semibold tracking-tight mb-3 text-white">
+            Pro
+          </h2>
           <p className="text-sm leading-relaxed text-white/60 mb-2">
             Everything you need to scale your workflow and deploy faster.
           </p>
@@ -73,7 +77,7 @@ export default function Page() {
             <li>$20 usage credit included</li>
             <li>Custom domains & analytics</li>
           </ul>
-          <button className="mt-8 w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] sm:w-auto">
+          <button className="mt-8 w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-white transition hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] sm:w-auto">
             Upgrade to Pro
           </button>
         </div>
@@ -90,7 +94,9 @@ export default function Page() {
               <path d="M12 3l9 18H3l9-18z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-semibold tracking-tight mb-3">Agency</h2>
+          <h2 className="text-2xl font-semibold tracking-tight mb-3 text-white">
+            Agency
+          </h2>
           <p className="text-sm leading-relaxed text-white/60 mb-2">
             For teams managing multiple clients or large-scale web apps.
           </p>
