@@ -77,7 +77,7 @@ export default function Page() {
             <li>$20 usage credit included</li>
             <li>Custom domains & analytics</li>
           </ul>
-          <button className="mt-8 w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-white transition hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] sm:w-auto">
+          <button className="mt-8 w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] sm:w-auto">
             Upgrade to Pro
           </button>
         </div>
