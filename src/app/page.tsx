@@ -120,7 +120,7 @@ export default function Page() {
       {/* Footer pulse text */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.3em] text-white/30">
         <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-[#F97316]" />
-        <span>Upgrade required to continue</span>
+        <span>Upgrade required to continue </span>
       </div>
     </main>
   );
