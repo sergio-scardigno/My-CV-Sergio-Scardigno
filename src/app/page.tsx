@@ -26,7 +26,7 @@ export default function Page() {
                 src="/myqr.png"
                 width={100}
                 height={100}
-                alt="Whatsapp de Sergio Scardigno"
+                alt="Whatsapp de Sergio Scardigno "
                 className="rounded-lg shadow-lg"
               />
             </a>
