@@ -294,7 +294,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{
           __html: `
             (function(d,t) {
-              var BASE_URL = "https://die-chat.mapaescolar.abc.gob.ar";
+              var BASE_URL = "https://die-chat.abc.gob.ar/";
               var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
               g.src = BASE_URL + "/packs/js/sdk.js";
               g.async = true;
