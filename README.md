@@ -1,4 +1,3 @@
-
 CV Sergio Scardigno
 
 # Minimalist CV

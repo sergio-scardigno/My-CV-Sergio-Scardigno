@@ -20,14 +20,14 @@ export default function Page() {
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
-        <div className="flex items-center justify-between">
+<div className="flex items-center justify-between">
           <div className="flex gap-x-1 pr-6 font-mono text-sm text-muted-foreground print:hidden">
             <a href="https://wa.me/qr/47SVC4PAQQ2KN1">
               <Image
                 src="/myqr.png"
                 width={100}
                 height={100}
-                alt="Whatsapp de Sergio Scardigno "
+                alt="Whatsapp de Sergio Scardigno"
                 className="rounded-lg shadow-lg"
               />
             </a>
@@ -42,6 +42,7 @@ export default function Page() {
                 className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
                 href={RESUME_DATA.locationLink}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <GlobeIcon className="h-3 w-3" />
                 {RESUME_DATA.location}
@@ -58,6 +59,7 @@ export default function Page() {
                   <a
                     href={`mailto:${RESUME_DATA.contact.email}`}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <MailIcon className="h-4 w-4" />
                   </a>
@@ -83,7 +85,7 @@ export default function Page() {
                   size="icon"
                   asChild
                 >
-                  <a href={social.url} target="_blank">
+                  <a href={social.url} target="_blank" rel="noopener noreferrer">
                     <social.icon className="h-4 w-4" />
                   </a>
                 </Button>
@@ -92,12 +94,12 @@ export default function Page() {
 
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
               {RESUME_DATA.contact.email ? (
-                <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank">
+                <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank" rel="noopener noreferrer">
                   <span className="underline">{RESUME_DATA.contact.email}</span>
                 </a>
               ) : null}
               {RESUME_DATA.contact.tel ? (
-                <a href={`tel:${RESUME_DATA.contact.tel}`} target="_blank">
+                <a href={`tel:${RESUME_DATA.contact.tel}`}>
                   <span className="underline">{RESUME_DATA.contact.tel}</span>
                 </a>
               ) : null}
@@ -127,6 +129,7 @@ export default function Page() {
                         className="hover:underline"
                         href={work.link}
                         target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {work.company}
                       </a>
@@ -163,14 +166,15 @@ export default function Page() {
           <h2 className="text-xl font-bold">Educación</h2>
           {RESUME_DATA.education.map((education) => {
             return (
-              <Card
-                key={education.school}
-                className="rounded-md bg-white p-4 shadow-md"
-              >
+              <Card key={education.school} className="rounded-md bg-white p-4 shadow-md">
                 <CardHeader className="mb-4">
                   <div className="flex items-center justify-between gap-x-1 text-base">
                     <div>
-                      <a href={education.link} target="_blank">
+                      <a
+                        href={education.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <h3 className="text-xl font-semibold">
                           {education.school}
                         </h3>
@@ -202,7 +206,7 @@ export default function Page() {
 
         <Section className="print-force-new-page scroll-mb-16">
           <h2 className="text-xl font-bold">Proyectos</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
+          <div className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
             {RESUME_DATA.projects.map((project) => {
               return (
                 <ProjectCard
@@ -227,7 +231,7 @@ export default function Page() {
                       src={awards.url}
                       width={100}
                       height={100}
-                      alt="Whatsapp de Sergio Scardigno"
+                      alt={`Certificado: ${awards.award}`}
                       className="rounded-lg shadow-lg"
                     />
                     <div className="flex flex-col justify-start">
@@ -235,6 +239,7 @@ export default function Page() {
                         <a
                           href={awards.link}
                           target="_blank"
+                          rel="noopener noreferrer"
                           className="text-black-500 hover:underline"
                         >
                           {awards.award}
@@ -259,7 +264,12 @@ export default function Page() {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <p className="mt-0 text-sm">
-                      <a href={published.link} target="_blank">
+                      <a
+                        href={published.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-black-500 hover:underline"
+                      >
                         <span className="font-bold">{published.title}</span>
                       </a>
                       <br />
@@ -287,27 +297,6 @@ export default function Page() {
             title: socialMediaLink.name,
           })),
         ]}
-      />
-      <Script
-        id="chatwoot-widget"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(d,t) {
-              var BASE_URL = "https://die-chat.abc.gob.ar/";
-              var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-              g.src = BASE_URL + "/packs/js/sdk.js";
-              g.async = true;
-              s.parentNode.insertBefore(g,s);
-              g.onload = function() {
-                window.chatwootSDK.run({
-                  websiteToken: "tsajYVBoNE4Pwqm12F5di5YT",
-                  baseUrl: BASE_URL
-                });
-              };
-            })(document, "script");
-          `,
-        }}
       />
     </main>
   );
