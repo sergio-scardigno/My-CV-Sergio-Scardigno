@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
 import Image from "next/image";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
@@ -297,27 +296,6 @@ export default function Page() {
             title: socialMediaLink.name,
           })),
         ]}
-      />
-      <Script
-        id="chatwoot-widget"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(d,t) {
-              var BASE_URL = "https://die-chat.abc.gob.ar";
-              var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-              g.src = BASE_URL + "/packs/js/sdk.js";
-              g.async = true;
-              s.parentNode.insertBefore(g,s);
-              g.onload = function() {
-                window.chatwootSDK.run({
-                  websiteToken: "xUaLevdVk4v98Yr3onGvvvF9",
-                  baseUrl: BASE_URL
-                });
-              };
-            })(document, "script");
-          `,
-        }}
       />
     </main>
   );
