@@ -298,6 +298,27 @@ export default function Page() {
           })),
         ]}
       />
+      <Script
+        id="chatwoot-widget"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(d,t) {
+              var BASE_URL = "https://die-chat.abc.gob.ar";
+              var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+              g.src = BASE_URL + "/packs/js/sdk.js";
+              g.async = true;
+              s.parentNode.insertBefore(g,s);
+              g.onload = function() {
+                window.chatwootSDK.run({
+                  websiteToken: "xUaLevdVk4v98Yr3onGvvvF9",
+                  baseUrl: BASE_URL
+                });
+              };
+            })(document, "script");
+          `,
+        }}
+      />
     </main>
   );
 }
