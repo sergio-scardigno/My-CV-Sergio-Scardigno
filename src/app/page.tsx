@@ -163,36 +163,63 @@ export default function Page() {
         </Section>
         <Section>
           <h2 className="text-xl font-bold">Educación</h2>
-          {RESUME_DATA.education.map((education) => {
-            return (
-              <Card key={education.school} className="rounded-md bg-white p-4 shadow-md">
-                <CardHeader className="mb-4">
-                  <div className="flex items-center justify-between gap-x-1 text-base">
-                    <div>
-                      <a
-                        href={education.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <h3 className="text-xl font-semibold">
-                          {education.school}
-                        </h3>
-                      </a>
-                      <div className="flex items-center text-xs text-gray-500">
-                        {education.start} - {education.end}
-                      </div>
-                      <CardContent className="mt-2">
-                        {education.degree}
-                      </CardContent>
-                      <div className="text-xs text-gray-500">
-                        {education.aptitudes}
-                      </div>
-                    </div>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
+            {RESUME_DATA.education.map((group) => (
+              <Card
+                key={`${group.school}-${group.category}`}
+                className="flex h-full flex-col rounded-md bg-white p-4 shadow-md"
+              >
+                <CardHeader className="p-0">
+                  {group.link !== "#" ? (
+                    <a
+                      href={group.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <h3 className="text-base font-semibold leading-tight hover:underline">
+                        {group.school}
+                      </h3>
+                    </a>
+                  ) : (
+                    <h3 className="text-base font-semibold leading-tight">
+                      {group.school}
+                    </h3>
+                  )}
+                  <p className="font-mono text-xs text-muted-foreground">
+                    {group.category}
+                  </p>
+                  <div className="text-xs tabular-nums text-gray-500">
+                    {group.period}
                   </div>
                 </CardHeader>
+                <CardContent className="mt-3 flex flex-1 flex-col space-y-2 p-0 text-xs">
+                  {group.courses.map((c) => (
+                    <div
+                      key={`${c.degree}-${"link" in c ? c.link : ""}`}
+                    >
+                      {"link" in c && c.link ? (
+                        <a
+                          href={c.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium leading-tight hover:underline"
+                        >
+                          {c.degree}
+                        </a>
+                      ) : (
+                        <div className="font-medium leading-tight">
+                          {c.degree}
+                        </div>
+                      )}
+                      <div className="text-[11px] text-gray-500">
+                        {c.aptitudes}
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
               </Card>
-            );
-          })}
+            ))}
+          </div>
         </Section>
         <Section>
           <h2 className="text-xl font-bold">Skills</h2>
@@ -221,19 +248,22 @@ export default function Page() {
         </Section>
         <Section>
           <h2 className="mt-3 text-xl font-bold">Certificaciones</h2>
-          {RESUME_DATA.awards.map((awards) => {
-            return (
-              <Card key={awards.award}>
-                <CardHeader>
-                  <div className="flex items-start gap-x-4 text-base">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
+            {RESUME_DATA.awards.map((awards) => {
+              return (
+                <Card
+                  key={awards.award}
+                  className="flex h-full flex-col rounded-md bg-white p-4 shadow-md"
+                >
+                  <CardHeader className="flex flex-1 flex-col gap-3 p-0 sm:flex-row sm:items-start">
                     <Image
                       src={awards.url}
                       width={100}
                       height={100}
                       alt={`Certificado: ${awards.award}`}
-                      className="rounded-lg shadow-lg"
+                      className="mx-auto shrink-0 rounded-lg shadow-lg sm:mx-0"
                     />
-                    <div className="flex flex-col justify-start">
+                    <div className="flex min-w-0 flex-1 flex-col justify-start text-center sm:text-left">
                       <p className="text-sm">
                         <a
                           href={awards.link}
@@ -248,11 +278,11 @@ export default function Page() {
                         {awards.year}
                       </div>
                     </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            );
-          })}
+                  </CardHeader>
+                </Card>
+              );
+            })}
+          </div>
         </Section>
         <Section>
           <h2 className="mt-3 text-xl font-bold">Publicaciones</h2>

@@ -26,8 +26,11 @@ export const RESUME_DATA = {
   locationLink:
     "https://www.google.com/maps/place/La+Plata,+Provincia+de+Buenos+Aires/",
   about: "DevOps Engineer | Backend Developer | PHP Developer",
-  summary:
-    "Como profesional en constante evolución en el ámbito de la tecnología, mi enfoque actual está en profundizar mis conocimientos y habilidades en el desarrollo full stack, tanto en backend como en frontend. Con experiencia en tecnologías como Laravel, Node.js, React.js y Angular, he diseñado y desarrollado aplicaciones escalables, seguras y eficientes. Mis habilidades abarcan desde la creación de APIs y la optimización de bases de datos, hasta el desarrollo de interfaces de usuario dinámicas y optimizadas para una excelente experiencia. He trabajado en todos los aspectos del ciclo de vida de desarrollo de software, incluyendo pruebas, depuración, despliegue y mantenimiento continuo. Certificaciones en AWS y React.js respaldan mi compromiso con la mejora continua y la adopción de nuevas tecnologías. Apasionado por la automatización y la eficiencia en los procesos de desarrollo, mi objetivo es seguir creando soluciones que aporten valor a los proyectos y optimicen su rendimiento.",
+  summary: `Soy Full-Stack Developer y DevOps Engineer con experiencia en desarrollo backend, frontend, administración de bases de datos, automatización CI/CD y mantenimiento de aplicaciones web.
+
+Trabajo con PHP, Laravel, Angular, Node.js, React, SQL, PostgreSQL, Docker, Kubernetes, Jenkins, Linux y AWS. Me enfoco en construir soluciones escalables, mantener sistemas existentes, actualizar tecnologías legacy, automatizar despliegues y mejorar procesos de desarrollo.
+
+Actualmente combino tareas de desarrollo full-stack, sysadmin y DevOps, participando en proyectos web, administración de bases de datos, pipelines con Jenkins y modernización de aplicaciones.`,
   avatarUrl: "/img/sergio.jpg",
   personalWebsiteUrl: "#",
   contact: {
@@ -37,7 +40,7 @@ export const RESUME_DATA = {
     social: [
       {
         name: "GitHub",
-        url: "https://github.com/scardigno1982",
+        url: "https://github.com/sergio-scardigno",
         icon: GitHubIcon,
       },
       {
@@ -50,102 +53,122 @@ export const RESUME_DATA = {
   education: [
     {
       school: "Platzi",
-      link: "https://platzi.com/p/sergios_plat/curso/8036-c-sharp-poo/diploma/detalle/",
-      degree: "Programación Orientada a Objetos con C#",
-      aptitudes: "C#",
-      start: "2024",
-      end: "2024",
-    },
-    {
-      school: "Platzi",
-      link: "https://platzi.com/p/sergios_plat/curso/3086-csharp/diploma/detalle/",
-      degree: "Curso Básico de Programación con C#",
-      aptitudes: "C#",
-      start: "2024",
-      end: "2024",
+      category: "C#",
+      link: "https://platzi.com/p/sergios_plat/",
+      period: "2024",
+      courses: [
+        {
+          degree: "Programación Orientada a Objetos con C#",
+          aptitudes: "C#",
+          link: "https://platzi.com/p/sergios_plat/curso/8036-c-sharp-poo/diploma/detalle/",
+        },
+        {
+          degree: "Curso Básico de Programación con C#",
+          aptitudes: "C#",
+          link: "https://platzi.com/p/sergios_plat/curso/3086-csharp/diploma/detalle/",
+        },
+      ],
     },
     {
       school: "EducacionIT",
+      category: "DevOps & Cloud",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      degree: "Devops Engineer",
-      aptitudes:
-        "Terraform · DevOps · Ansible · Jenkins · Kubernetes · AWS CloudFormation · Docker · GitOps · Amazon Web Services (AWS)",
-      start: "2023",
-      end: "2024",
+      period: "2023 - 2024",
+      courses: [
+        {
+          degree: "Devops Engineer",
+          aptitudes:
+            "Terraform · DevOps · Ansible · Jenkins · Kubernetes · AWS CloudFormation · Docker · GitOps · Amazon Web Services (AWS)",
+        },
+      ],
     },
     {
       school: "Universidad Nacional de Tres de Febrero",
-      degree: "Argentina Programa Backend",
+      category: "Backend",
       link: "#",
-      aptitudes: "Mongo, Node JS, Express",
-      start: "2023",
-      end: "2023",
+      period: "2023",
+      courses: [
+        {
+          degree: "Argentina Programa Backend",
+          aptitudes: "Mongo, Node JS, Express",
+        },
+      ],
     },
     {
       school: "EducacionIT",
-      degree: "Introducción a Bases de Datos y SQL",
+      category: "Bases de Datos",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      aptitudes: "SQL · Microsoft SQL Server · MySQL · PostgreSQL",
-      start: "2023",
-      end: "2023",
+      period: "2023",
+      courses: [
+        {
+          degree: "Introducción a Bases de Datos y SQL",
+          aptitudes: "SQL · Microsoft SQL Server · MySQL · PostgreSQL",
+        },
+      ],
     },
     {
       school: "EducacionIT",
-      degree: "PHP Arquitectura Avanzada",
+      category: "PHP",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      aptitudes: "Programación orientada a objetos (POO) · PHP",
-      start: "2022",
-      end: "2022",
+      period: "2022",
+      courses: [
+        {
+          degree: "PHP Arquitectura Avanzada",
+          aptitudes: "Programación orientada a objetos (POO) · PHP",
+        },
+      ],
     },
     {
       school: "EducacionIT",
-      degree: "React js",
+      category: "Frontend / JavaScript",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      aptitudes: "JavaScript · React.js",
-      start: "2021",
-      end: "2021",
+      period: "2021",
+      courses: [
+        {
+          degree: "React js",
+          aptitudes: "JavaScript · React.js",
+        },
+        {
+          degree: "Javascript Desarrollador Avanzado",
+          aptitudes: "JavaScript",
+        },
+      ],
     },
     {
       school: "EducacionIT",
-      degree: " Javascript Desarrollador Avanzado",
+      category: "Python & Django",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      aptitudes: "JavaScript",
-      start: "2021",
-      end: "2021",
+      period: "2021",
+      courses: [
+        {
+          degree: "Python Programming",
+          aptitudes:
+            "Python · Programación orientada a objetos (POO) · Programación",
+        },
+        {
+          degree: "Desarrollo Web en Python & Django",
+          aptitudes: "Python · Web frameworks y Django · Tipos de vistas",
+          link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/47296",
+        },
+        {
+          degree: "Desarrollo Web en Python & Django (Data Science)",
+          aptitudes: "Python · Jupyter Notebook · Data Scientist",
+          link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/51616",
+        },
+      ],
     },
     {
       school: "EducacionIT",
-      degree: "Python Programming",
+      category: "Linux / Sysadmin",
       link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      aptitudes:
-        "Python · Programación orientada a objetos (POO) · Programación",
-      start: "2021",
-      end: "2021",
-    },
-    {
-      school: "EducacionIT",
-      degree: "Desarrollo Web en Python & Django",
-      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/47296",
-      aptitudes: "Python · Web frameworks y Django · Tipos de vistas",
-      start: "2021",
-      end: "2021",
-    },
-    {
-      school: "EducacionIT",
-      degree: "Desarrollo Web en Python & Django",
-      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/51616",
-      aptitudes: "Python · Jupyter Notebook · Data Scientist",
-      start: "2021",
-      end: "2021",
-    },
-    {
-      school: "EducacionIT",
-      degree: "Administrador Hosting Avanzado Linux",
-      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      aptitudes:
-        "Administración de DNS · Linux · Servicios de hosting · Servidores web",
-      start: "2021",
-      end: "2021",
+      period: "2021",
+      courses: [
+        {
+          degree: "Administrador Hosting Avanzado Linux",
+          aptitudes:
+            "Administración de DNS · Linux · Servicios de hosting · Servidores web",
+        },
+      ],
     },
   ],
   work: [
@@ -159,7 +182,7 @@ export const RESUME_DATA = {
       start: "2023",
       end: "now",
       description:
-        "Administración de bases de datos SQL y Postgresql, Desarrollo de proyectos Angular y web. Implementacion de Jelkins para la automatizacion de proyectos.",
+        "Administración de bases de datos SQL y Postgresql, Desarrollo de proyectos Angular y web. Implementación de Jenkins para la automatización de proyectos.",
     },
     {
       company: "Usina Estrategias digitales · Part-time",
@@ -211,20 +234,13 @@ export const RESUME_DATA = {
       url: "/img/aws.png",
     },
     {
-      award:
-        "Certificado de asistencia al curso: Desarrollo rápido de aplicaciones con Low Code, organizado por DonWeb (Marzo-Abril 2023)",
-      link: "https://guias.donweb.com/certificados-curso-lowcode-2023/sergioscardigno82_gmail_com",
-      year: "2023",
-      url: "/img/donweb.png",
-    },
-    {
       award: "Curso Online de Vagrant",
       link: "https://openwebinars.net/cert/nw5Yz?r=6e5906d6e&t=1626095498",
       year: "2023",
       url: "/img/vagrant.png",
     },
     {
-      award: "Reacj.js Avanzado",
+      award: "React.js Avanzado",
       link: "https://api.educacionit.com/pdf/certificados/Sergio-Scardigno-266821/50452",
       year: "2023",
       url: "/img/react.png",
