@@ -8,6 +8,7 @@ import { GlobeIcon, MailIcon, PhoneIcon, Speech } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
+import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
+      <section className="mx-auto w-full max-w-2xl space-y-8 bg-background text-foreground print:space-y-6 print:bg-white print:text-neutral-900">
 <div className="flex items-center justify-between">
           <div className="flex gap-x-1 pr-6 font-mono text-sm text-muted-foreground print:hidden">
             <a href="https://wa.me/qr/47SVC4PAQQ2KN1">
@@ -89,6 +90,7 @@ export default function Page() {
                   </a>
                 </Button>
               ))}
+              <ThemeToggle />
             </div>
 
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
@@ -145,7 +147,7 @@ export default function Page() {
                         ))}
                       </span>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+                    <div className="text-sm tabular-nums text-muted-foreground">
                       {work.start} - {work.end}
                     </div>
                   </div>
@@ -167,7 +169,7 @@ export default function Page() {
             {RESUME_DATA.education.map((group) => (
               <Card
                 key={`${group.school}-${group.category}`}
-                className="flex h-full flex-col rounded-md bg-white p-4 shadow-md"
+                className="flex h-full flex-col rounded-md p-4 shadow-md"
               >
                 <CardHeader className="p-0">
                   {group.link !== "#" ? (
@@ -188,7 +190,7 @@ export default function Page() {
                   <p className="font-mono text-xs text-muted-foreground">
                     {group.category}
                   </p>
-                  <div className="text-xs tabular-nums text-gray-500">
+                  <div className="text-xs tabular-nums text-muted-foreground">
                     {group.period}
                   </div>
                 </CardHeader>
@@ -211,7 +213,7 @@ export default function Page() {
                           {c.degree}
                         </div>
                       )}
-                      <div className="text-[11px] text-gray-500">
+                      <div className="text-[11px] text-muted-foreground">
                         {c.aptitudes}
                       </div>
                     </div>
@@ -253,7 +255,7 @@ export default function Page() {
               return (
                 <Card
                   key={awards.award}
-                  className="flex h-full flex-col rounded-md bg-white p-4 shadow-md"
+                  className="flex h-full flex-col rounded-md p-4 shadow-md"
                 >
                   <CardHeader className="flex flex-1 flex-col gap-3 p-0 sm:flex-row sm:items-start">
                     <Image
@@ -269,12 +271,12 @@ export default function Page() {
                           href={awards.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-black-500 hover:underline"
+                          className="text-foreground hover:underline"
                         >
                           {awards.award}
                         </a>
                       </p>
-                      <div className="text-sm tabular-nums text-gray-500">
+                      <div className="text-sm tabular-nums text-muted-foreground">
                         {awards.year}
                       </div>
                     </div>
@@ -297,14 +299,14 @@ export default function Page() {
                         href={published.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-black-500 hover:underline"
+                        className="text-foreground hover:underline"
                       >
                         <span className="font-bold">{published.title}</span>
                       </a>
                       <br />
                       {published.pub}
                     </p>
-                    <div className="text-sm tabular-nums text-gray-500">
+                    <div className="text-sm tabular-nums text-muted-foreground">
                       {published.year}
                     </div>
                   </div>

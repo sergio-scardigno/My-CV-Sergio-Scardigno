@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import React from "react";
 
+import { ThemeProvider } from "@/components/theme-provider";
+
 export const metadata: Metadata = {
   title: "Creado en Next.js por Sergio Scardigno",
   description: "CV de Sergio Scardigno",
@@ -22,9 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={inter.className}>
-      <body>{children}</body>
-      <Analytics />
+    <html lang="es" className={inter.className} suppressHydrationWarning>
+      <body>
+        <ThemeProvider>
+          {children}
+          <Analytics />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
