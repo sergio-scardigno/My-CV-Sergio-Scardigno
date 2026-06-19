@@ -25,12 +25,12 @@ export const RESUME_DATA = {
   location: "La Plata, Buenos Aires, AR",
   locationLink:
     "https://www.google.com/maps/place/La+Plata,+Provincia+de+Buenos+Aires/",
-  about: "DevOps Engineer | Backend Developer | PHP Developer",
-  summary: `Soy Full-Stack Developer y DevOps Engineer con experiencia en desarrollo backend, frontend, administración de bases de datos, automatización CI/CD y mantenimiento de aplicaciones web.
+  about: "Platform Engineer | DevOps Engineer | Backend Engineer",
+  summary: `Profesional de tecnología con experiencia en desarrollo de software, administración de infraestructura y automatización de procesos de entrega continua. Especializado en la construcción y operación de plataformas basadas en AWS, Kubernetes, Docker y Linux, integrando prácticas DevOps para mejorar la escalabilidad, confiabilidad y eficiencia de los sistemas.
 
-Trabajo con PHP, Laravel, Angular, Node.js, React, SQL, PostgreSQL, Docker, Kubernetes, Jenkins, Linux y AWS. Me enfoco en construir soluciones escalables, mantener sistemas existentes, actualizar tecnologías legacy, automatizar despliegues y mejorar procesos de desarrollo.
+He participado en proyectos de desarrollo y mantenimiento de aplicaciones utilizando PHP, Laravel, Node.js, Angular y React, así como en la administración de bases de datos PostgreSQL y SQL Server. Mi experiencia incluye automatización CI/CD con Jenkins, modernización de aplicaciones legacy, optimización de entornos productivos y gestión integral de infraestructura.
 
-Actualmente combino tareas de desarrollo full-stack, sysadmin y DevOps, participando en proyectos web, administración de bases de datos, pipelines con Jenkins y modernización de aplicaciones.`,
+Me interesa especialmente la ingeniería de plataformas, la automatización, la arquitectura cloud y la mejora continua de procesos que permitan a los equipos desarrollar y desplegar software de forma más rápida, segura y eficiente.`,
   avatarUrl: "/img/sergio.jpg",
   personalWebsiteUrl: "#",
   contact: {
@@ -70,15 +70,16 @@ Actualmente combino tareas de desarrollo full-stack, sysadmin y DevOps, particip
       ],
     },
     {
-      school: "EducacionIT",
+      school: "Manhattan College & EducacionIT",
       category: "DevOps & Cloud",
-      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821",
-      period: "2023 - 2024",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/64510",
+      period: "may. 2023 - feb. 2024",
       courses: [
         {
           degree: "Devops Engineer",
           aptitudes:
             "Terraform · DevOps · Ansible · Jenkins · Kubernetes · AWS CloudFormation · Docker · GitOps · Amazon Web Services (AWS)",
+          link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/64510",
         },
       ],
     },
@@ -209,6 +210,12 @@ Actualmente combino tareas de desarrollo full-stack, sysadmin y DevOps, particip
   ],
 
   awards: [
+    {
+      award: "Devops Engineer",
+      link: "https://www.educacionit.com/perfil/sergio-scardigno-266821/certificado/64510",
+      year: "2024",
+      url: "/img/devops-engineer.png",
+    },
     {
       award: "Programación Orientada a Objetos con C#",
       link: "https://platzi.com/p/sergios_plat/curso/8036-c-sharp-poo/diploma/detalle/",
