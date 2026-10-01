@@ -31,7 +31,7 @@ export const RESUME_DATA = {
 He participado en proyectos de desarrollo y mantenimiento de aplicaciones utilizando PHP, Laravel, Node.js, Angular y React, así como en la administración de bases de datos PostgreSQL y SQL Server. Mi experiencia incluye automatización CI/CD con Jenkins, modernización de aplicaciones legacy, optimización de entornos productivos y gestión integral de infraestructura.
 
 Me interesa especialmente la ingeniería de plataformas, la automatización, la arquitectura cloud y la mejora continua de procesos que permitan a los equipos desarrollar y desplegar software de forma más rápida, segura y eficiente.`,
-  avatarUrl: "/img/sergio.jpg",
+  avatarUrl: "/img/sergio-scardigno.jpg",
   personalWebsiteUrl: "#",
   contact: {
     email: "sergioscardigno82@gmail.com",
