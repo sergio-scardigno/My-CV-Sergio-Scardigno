@@ -18,6 +18,8 @@ import {
   YearProgressLogo,
 } from "@/images/logos";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
+import { CASE_STUDIES } from "./case-studies";
+import { INCIDENTS } from "./incidents";
 
 export const RESUME_DATA = {
   name: "Sergio Scardigno",
@@ -326,6 +328,10 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
 
   // end insert
 
+  incidents: INCIDENTS,
+
+  caseStudies: CASE_STUDIES,
+
   skills: [
     "PHP",
     "Laravel",
@@ -352,7 +358,71 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
     "GCP",
     "Azure",
   ],
+  // Primero el trabajo propio y actual. Los trabajos prácticos del bootcamp
+  // quedan al final: muestran formación, no criterio.
   projects: [
+    {
+      title: "Presidio · Anonimización local de documentos legales",
+      techStack: ["Python", "Microsoft Presidio", "spaCy", "OCR", "PDF"],
+      description:
+        "Anonimiza expedientes y escrituras sin conexión a ningún servicio externo: detecta personas, domicilios, DNI y CUIT/CUIL, los reemplaza por seudónimos numerados y permite restaurar los datos reales después. Pensado para estudios jurídicos que no pueden subir documentación a la nube.",
+      logo: ConsultlyLogo,
+      link: {
+        label: "github.com/sergio-scardigno/presidio",
+        href: "https://github.com/sergio-scardigno/presidio",
+      },
+    },
+    {
+      title: "Mapa Escolar",
+      techStack: [
+        "Angular",
+        "Tailwind",
+        "HTML",
+        "Typescript",
+        "Content",
+        "Full Stack Developer",
+      ],
+      description:
+        "Replicando en Angular el proyecto ABC de la Dirección General de Cultura y Educación de la Provincia de Buenos Aires",
+      logo: ConsultlyLogo,
+      link: {
+        label: "mapaescolar.abc.gob.ar",
+        href: "https://mapaescolar.abc.gob.ar",
+      },
+    },
+    {
+      title: "Diera",
+      techStack: ["Laravel", "Tailwind", "PHP", "Postgresql", "Content"],
+      description:
+        "Actualizacion de librerias deprecadas, migracion de base de datos, actualizacion de version de laravel y version de PHP",
+      logo: ConsultlyLogo,
+      link: {
+        label: "mapaescolar.abc.gob.ar/diera",
+        href: "https://mapaescolar.abc.gob.ar/diera",
+      },
+    },
+    {
+      title: "Mercado Pago Checkout Pro para Bagisto",
+      techStack: ["PHP", "Laravel 11", "Bagisto 2.3", "Mercado Pago"],
+      description:
+        "Módulo de pago para Bagisto 2.3 sobre Laravel 11, con tarjetas y efectivo. Resuelve el ciclo completo de la pasarela: preferencia, redirección, webhook y los tres estados de retorno.",
+      logo: ConsultlyLogo,
+      link: {
+        label: "github.com/sergio-scardigno/Bagisto-Mercado-Pago-Checkout-Pro",
+        href: "https://github.com/sergio-scardigno/Bagisto-Mercado-Pago-Checkout-Pro",
+      },
+    },
+    {
+      title: "Vigilador de cámaras con detección en tiempo real",
+      techStack: ["Python", "YOLOv8", "Telegram", "Cámara IP"],
+      description:
+        "Analiza en tiempo real el video de una cámara IP y avisa por Telegram cuando detecta un patrón concreto. Usa el modelo nano de YOLOv8 porque corre sin GPU, con reconexión automática ante caídas del enlace.",
+      logo: ConsultlyLogo,
+      link: {
+        label: "github.com/sergio-scardigno/vigilador-camaras",
+        href: "https://github.com/sergio-scardigno/vigilador-camaras",
+      },
+    },
     {
       title: "Vagrant, Docker, Kubernetes, Helm y ArgoCD",
       techStack: ["Vagrant", "Docker", "Kubernetes", "Helm", "ArgoCD"],
@@ -385,35 +455,6 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
       link: {
         label: "https://github.com/Scardigno1982/Kubernetes",
         href: "https://github.com/Scardigno1982/TP-8-Kubernetes",
-      },
-    },
-    {
-      title: "Mapa Escolar",
-      techStack: [
-        "Angular",
-        "Tailwind",
-        "HTML",
-        "Typescript",
-        "Content",
-        "Full Stack Developer",
-      ],
-      description:
-        "Replicando en Angular el proyecto ABC de la Dirección General de Cultura y Educación de la Provincia de Buenos Aires",
-      logo: ConsultlyLogo,
-      link: {
-        label: "mapaescolar.abc.gob.ar",
-        href: "https://mapaescolar.abc.gob.ar",
-      },
-    },
-    {
-      title: "Diera",
-      techStack: ["Laravel", "Tailwind", "PHP", "Postgresql", "Content"],
-      description:
-        "Actualizacion de librerias deprecadas, migracion de base de datos, actualizacion de version de laravel y version de PHP",
-      logo: ConsultlyLogo,
-      link: {
-        label: "mapaescolar.abc.gob.ar/diera",
-        href: "https://mapaescolar.abc.gob.ar/diera",
       },
     },
     {

@@ -8,6 +8,9 @@ import { GlobeIcon, MailIcon, PhoneIcon, Speech } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
+import { IncidentList } from "@/components/incident-list";
+import { CaseStudyGroup } from "@/components/case-study-group";
+import { featuredCaseStudies } from "@/data/case-studies";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 
@@ -20,7 +23,7 @@ export default function Page() {
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-background text-foreground print:space-y-6 print:bg-white print:text-neutral-900">
-<div className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <div className="flex gap-x-1 pr-6 font-mono text-sm text-muted-foreground print:hidden">
             <a href="https://wa.me/qr/47SVC4PAQQ2KN1">
               <Image
@@ -85,7 +88,11 @@ export default function Page() {
                   size="icon"
                   asChild
                 >
-                  <a href={social.url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <social.icon className="h-4 w-4" />
                   </a>
                 </Button>
@@ -95,7 +102,11 @@ export default function Page() {
 
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
               {RESUME_DATA.contact.email ? (
-                <a href={`mailto:${RESUME_DATA.contact.email}`} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`mailto:${RESUME_DATA.contact.email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span className="underline">{RESUME_DATA.contact.email}</span>
                 </a>
               ) : null}
@@ -168,7 +179,7 @@ export default function Page() {
         </Section>
         <Section>
           <h2 className="text-xl font-bold">Educación</h2>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
+          <div className="grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
             {RESUME_DATA.education.map((group) => (
               <Card
                 key={`${group.school}-${group.category}`}
@@ -199,9 +210,7 @@ export default function Page() {
                 </CardHeader>
                 <CardContent className="mt-3 flex flex-1 flex-col space-y-2 p-0 text-xs">
                   {group.courses.map((c) => (
-                    <div
-                      key={`${c.degree}-${"link" in c ? c.link : ""}`}
-                    >
+                    <div key={`${c.degree}-${"link" in c ? c.link : ""}`}>
                       {"link" in c && c.link ? (
                         <a
                           href={c.link}
@@ -236,8 +245,24 @@ export default function Page() {
         </Section>
 
         <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Proyectos</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
+          <h2 className="text-xl font-bold">Casos de estudio</h2>
+          <p className="text-pretty font-mono text-sm text-muted-foreground">
+            El problema, las restricciones que no se podían mover, qué decidí y
+            qué descarté.
+          </p>
+          <CaseStudyGroup cases={featuredCaseStudies()} />
+          <a
+            className="font-mono text-xs text-muted-foreground hover:underline print:hidden"
+            href="/casos"
+          >
+            Ver todos los casos →
+          </a>
+        </Section>
+        <Section className="print-force-new-page scroll-mb-16">
+          <h2 className="text-xl font-bold">
+            Otros proyectos y trabajos prácticos
+          </h2>
+          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
             {RESUME_DATA.projects.map((project) => {
               return (
                 <ProjectCard
@@ -253,7 +278,7 @@ export default function Page() {
         </Section>
         <Section>
           <h2 className="mt-3 text-xl font-bold">Certificaciones</h2>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
+          <div className="grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
             {RESUME_DATA.awards.map((awards) => {
               return (
                 <Card
@@ -288,6 +313,20 @@ export default function Page() {
               );
             })}
           </div>
+        </Section>
+        <Section className="print-force-new-page scroll-mb-16">
+          <h2 className="mt-3 text-xl font-bold">Incidentes y postmortems</h2>
+          <p className="text-pretty font-mono text-sm text-muted-foreground">
+            Problemas reales de producción: qué se vio, qué pensé que era, qué
+            resultó ser y qué dejé para que no vuelva a pasar.
+          </p>
+          <IncidentList />
+          <a
+            className="font-mono text-xs text-muted-foreground hover:underline print:hidden"
+            href="/incidentes"
+          >
+            Ver todos los incidentes →
+          </a>
         </Section>
         <Section>
           <h2 className="mt-3 text-xl font-bold">Publicaciones</h2>
@@ -325,6 +364,14 @@ export default function Page() {
           {
             url: RESUME_DATA.personalWebsiteUrl,
             title: "Personal Website",
+          },
+          {
+            url: "/casos",
+            title: "Casos de estudio",
+          },
+          {
+            url: "/incidentes",
+            title: "Incidentes y postmortems",
           },
           ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
             url: socialMediaLink.url,
