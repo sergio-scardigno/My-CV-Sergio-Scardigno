@@ -309,7 +309,7 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
       company: "Grupo Rampazzo",
       link: "#",
       badges: [],
-      title: "Programador Full-Stack Developer",
+      title: "Product Platform Engineer",
       start: "2025",
       end: "now",
       description:
