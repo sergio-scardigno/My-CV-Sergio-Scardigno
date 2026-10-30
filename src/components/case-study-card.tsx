@@ -1,5 +1,9 @@
-import { Card, CardHeader, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { Fork } from "./fork";
+import { StackChips } from "./stack-chips";
+import { DiagramFigure } from "./diagrams/figure";
+import { DIAGRAMS } from "./diagrams";
+import { caseStatusVariant, resultLabel } from "@/lib/status";
 import type { CaseStudy } from "@/data/case-studies";
 
 interface Props {
@@ -8,10 +12,23 @@ interface Props {
   headingLevel?: 1 | 3;
 }
 
-function Label({ children }: { children: string }) {
+/**
+ * El rótulo de un bloque. En minúscula y alineado contra el mismo canal que
+ * usa la bifurcación, para que todo el caso tenga un solo borde izquierdo.
+ */
+function Block({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-      {children}
+    <div className="grid gap-x-3 sm:grid-cols-[5.5rem_1fr]">
+      <span className="font-mono text-[11px] leading-5 text-muted-foreground sm:text-right">
+        {label}
+      </span>
+      <div className="space-y-1">{children}</div>
     </div>
   );
 }
@@ -22,9 +39,13 @@ function BulletList({ items }: { items: readonly string[] }) {
       {items.map((item) => (
         <li
           key={item}
-          className="flex items-start gap-x-2 text-xs leading-relaxed"
+          className="flex items-start gap-x-2 text-sm leading-relaxed text-muted-foreground"
         >
-          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted-foreground" />
+          <span
+            aria-hidden="true"
+            data-decoration
+            className="mt-2 h-px w-2 shrink-0 bg-rule"
+          />
           <span className="text-pretty">{item}</span>
         </li>
       ))}
@@ -33,109 +54,97 @@ function BulletList({ items }: { items: readonly string[] }) {
 }
 
 export function CaseStudyCard({ caseStudy, headingLevel = 3 }: Props) {
-  const enCurso = caseStudy.status === "En curso";
   const Heading = headingLevel === 1 ? "h1" : "h3";
-  const headingSize = headingLevel === 1 ? "text-xl" : "text-base";
+  const headingClass =
+    headingLevel === 1
+      ? "type-display text-2xl sm:text-3xl"
+      : "type-display-sm text-lg";
+  const Diagram = caseStudy.diagram ? DIAGRAMS[caseStudy.diagram] : undefined;
 
   return (
-    <Card className="flex break-inside-avoid flex-col border border-muted p-4">
-      <CardHeader className="p-0">
-        <div className="flex items-start justify-between gap-x-2">
-          <Heading
-            className={`text-pretty font-semibold leading-tight ${headingSize}`}
-          >
-            {caseStudy.link ? (
-              <a
-                className="hover:underline"
-                href={caseStudy.link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {caseStudy.title}
-              </a>
-            ) : (
-              caseStudy.title
-            )}
-          </Heading>
-          <Badge
-            variant={enCurso ? "default" : "secondary"}
-            className="shrink-0"
-          >
+    <article className="flex break-inside-avoid flex-col gap-y-4 border-t border-rule py-5">
+      <div className="space-y-2">
+        <Heading className={`measure-tight text-pretty ${headingClass}`}>
+          {caseStudy.link ? (
+            <a
+              className="hover:underline"
+              href={caseStudy.link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {caseStudy.title}
+            </a>
+          ) : (
+            caseStudy.title
+          )}
+        </Heading>
+
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] text-muted-foreground">
+          <Badge variant={caseStatusVariant(caseStudy.status)}>
             {caseStudy.status}
           </Badge>
+          {caseStudy.period ? (
+            <span className="tabular-nums">{caseStudy.period}</span>
+          ) : null}
+          <span>{caseStudy.role}</span>
         </div>
-        <div className="font-mono text-[11px] tabular-nums text-muted-foreground">
-          {caseStudy.period ? `${caseStudy.period} · ` : null}
-          {caseStudy.role}
-        </div>
-      </CardHeader>
+      </div>
 
-      <CardContent className="mt-3 space-y-3 p-0">
-        <div className="space-y-0.5">
-          <Label>Problema</Label>
-          <p className="text-pretty text-xs leading-relaxed">
+      <div className="measure space-y-3">
+        <Block label="problema">
+          <p className="text-pretty text-sm leading-relaxed text-muted-foreground">
             {caseStudy.problem}
           </p>
-        </div>
+        </Block>
 
-        <div className="space-y-1">
-          <Label>Restricciones</Label>
+        <Block label="no se podía">
           <BulletList items={caseStudy.constraints} />
-        </div>
+        </Block>
+      </div>
 
-        <div className="space-y-1">
-          <Label>Decisiones</Label>
-          <div className="space-y-2">
-            {caseStudy.decisions.map((decision) => (
-              <div key={decision.choice} className="text-xs leading-relaxed">
-                <span className="text-pretty font-medium">
-                  {decision.choice}
-                </span>
-                <span className="text-pretty text-muted-foreground">
-                  {" "}
-                  en vez de {decision.instead}
-                </span>
-                <div className="text-pretty text-muted-foreground">
-                  Porque {decision.why}.
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/*
+       * Las decisiones son el corazón del caso: cada una con lo que se
+       * descartó y por qué. Es la misma bifurcación que las hipótesis de un
+       * incidente, porque es la misma forma de pensar.
+       */}
+      <div className="measure space-y-4 border-l border-rule pl-4">
+        {caseStudy.decisions.map((decision) => (
+          <Fork
+            key={decision.choice}
+            taken={[decision.choice]}
+            rejected={[decision.instead]}
+            why={decision.why}
+          />
+        ))}
+      </div>
 
-        <div className="space-y-1">
-          <Label>{enCurso ? "Dónde está hoy" : "Resultado"}</Label>
+      {Diagram ? (
+        <DiagramFigure>
+          <Diagram />
+        </DiagramFigure>
+      ) : null}
+
+      <div className="measure space-y-3">
+        <Block label={resultLabel(caseStudy.status).toLowerCase()}>
           <BulletList items={caseStudy.result} />
-        </div>
+        </Block>
 
         {caseStudy.open?.length ? (
-          <div className="space-y-1">
-            <Label>Abierto</Label>
+          <Block label="abierto">
             <BulletList items={caseStudy.open} />
-          </div>
+          </Block>
         ) : null}
 
         {caseStudy.wrong ? (
-          <div className="space-y-0.5">
-            <Label>Qué salió mal</Label>
-            <p className="text-pretty text-xs leading-relaxed">
+          <Block label="salió mal">
+            <p className="text-pretty text-sm leading-relaxed text-muted-foreground">
               {caseStudy.wrong}
             </p>
-          </div>
+          </Block>
         ) : null}
+      </div>
 
-        <div className="flex flex-wrap gap-1 pt-1">
-          {caseStudy.stack.map((tag) => (
-            <Badge
-              className="px-1 py-0 text-[10px]"
-              variant="secondary"
-              key={tag}
-            >
-              {tag}
-            </Badge>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+      <StackChips stack={caseStudy.stack} />
+    </article>
   );
 }
