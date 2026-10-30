@@ -1,57 +1,82 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CommandMenu } from "@/components/command-menu";
+import Image from "next/image";
 import { Metadata } from "next";
-import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon, Speech } from "lucide-react";
+import { GlobeIcon, MailIcon } from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { RESUME_DATA } from "@/data/resume-data";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { CommandMenu } from "@/components/command-menu";
+import { Section } from "@/components/ui/section";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ProjectCard } from "@/components/project-card";
 import { IncidentList } from "@/components/incident-list";
 import { CaseStudyGroup } from "@/components/case-study-group";
+import { Fork, hypothesesToFork } from "@/components/fork";
+import { StackChips } from "@/components/stack-chips";
+import { DiagramFigure } from "@/components/diagrams/figure";
+import { ZfsThermalFork } from "@/components/diagrams";
+import {
+  LogList,
+  LogRow,
+  SectionHeading,
+  SectionLede,
+} from "@/components/logbook";
+import { RESUME_DATA } from "@/data/resume-data";
 import { featuredCaseStudies } from "@/data/case-studies";
-import { ThemeToggle } from "@/components/theme-toggle";
-import Image from "next/image";
+import { featuredIncident } from "@/data/incidents";
+import { severityVariant } from "@/lib/status";
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
   description: RESUME_DATA.summary,
 };
 
+const ROLES = RESUME_DATA.about.split("|").map((role) => role.trim());
+
 export default function Page() {
+  const specimen = featuredIncident();
+
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-background text-foreground print:space-y-6 print:bg-white print:text-neutral-900">
-        <div className="flex items-center justify-between">
-          <div className="flex gap-x-1 pr-6 font-mono text-sm text-muted-foreground print:hidden">
-            <a href="https://wa.me/qr/47SVC4PAQQ2KN1">
-              <Image
-                src="/myqr.png"
-                width={100}
-                height={100}
-                alt="Whatsapp de Sergio Scardigno"
-                className="rounded-lg shadow-lg"
-              />
-            </a>
-          </div>
-          <div className="flex-1 space-y-1.5">
-            <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
-            <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
-              {RESUME_DATA.about}
+    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-0 md:p-16">
+      <section className="mx-auto w-full max-w-3xl space-y-10 print:space-y-6">
+        <header className="flex items-start justify-between gap-x-6">
+          <div className="flex-1 space-y-2">
+            <h1 className="type-display text-3xl text-foreground sm:text-4xl">
+              {RESUME_DATA.name}
+            </h1>
+
+            {/*
+             * Los tres roles separados por un filete y no por un punto medio:
+             * la cadena "A · B · C" es el tic de plantilla más reconocible.
+             */}
+            <p className="flex flex-wrap items-center font-mono text-sm text-muted-foreground">
+              {ROLES.map((role, i) => (
+                <span
+                  key={role}
+                  className={
+                    i > 0
+                      ? "before:mx-2 before:inline-block before:h-3 before:w-px before:bg-rule before:align-middle"
+                      : undefined
+                  }
+                >
+                  {role}
+                </span>
+              ))}
             </p>
-            <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
+
+            <p className="font-mono text-xs text-muted-foreground">
               <a
-                className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
+                className="inline-flex items-center gap-x-1.5 align-baseline leading-none hover:underline"
                 href={RESUME_DATA.locationLink}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <GlobeIcon className="h-3 w-3" />
+                <GlobeIcon className="h-3 w-3" aria-hidden="true" />
                 {RESUME_DATA.location}
               </a>
             </p>
-            <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
+
+            <div className="flex items-center gap-x-1 pt-1 print:hidden">
               {RESUME_DATA.contact.email ? (
                 <Button
                   className="h-8 w-8"
@@ -61,25 +86,12 @@ export default function Page() {
                 >
                   <a
                     href={`mailto:${RESUME_DATA.contact.email}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    aria-label="Enviar un correo a Sergio Scardigno"
                   >
-                    <MailIcon className="h-4 w-4" />
+                    <MailIcon className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </Button>
               ) : null}
-              {/* {RESUME_DATA.contact.tel ? (
-                <Button
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
-                >
-                  <a href={`tel:${RESUME_DATA.contact.tel}`} target="_blank">
-                    <PhoneIcon className="h-4 w-4" />
-                  </a>
-                </Button>
-              ) : null} */}
               {RESUME_DATA.contact.social.map((social) => (
                 <Button
                   key={social.name}
@@ -92,98 +104,211 @@ export default function Page() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.name}
                   >
-                    <social.icon className="h-4 w-4" />
+                    <social.icon className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </Button>
               ))}
               <ThemeToggle />
             </div>
 
-            <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
+            {/*
+             * En papel no hay dónde hacer clic: el correo y el teléfono van
+             * escritos. Este bloque es la única forma de contacto en el PDF.
+             */}
+            <div className="hidden flex-col font-mono text-xs text-muted-foreground print:flex">
               {RESUME_DATA.contact.email ? (
-                <a
-                  href={`mailto:${RESUME_DATA.contact.email}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="underline">{RESUME_DATA.contact.email}</span>
+                <a href={`mailto:${RESUME_DATA.contact.email}`}>
+                  {RESUME_DATA.contact.email}
                 </a>
               ) : null}
               {RESUME_DATA.contact.tel ? (
                 <a href={`tel:${RESUME_DATA.contact.tel}`}>
-                  <span className="underline">{RESUME_DATA.contact.tel}</span>
+                  {RESUME_DATA.contact.tel}
                 </a>
               ) : null}
             </div>
           </div>
 
-          <Avatar className="h-28 w-28">
-            <AvatarImage
-              alt="Sergio Scardigno, foto de perfil"
-              src={RESUME_DATA.avatarUrl}
+          <Image
+            src={RESUME_DATA.avatarUrl}
+            alt="Sergio Scardigno"
+            width={112}
+            height={112}
+            priority
+            sizes="112px"
+            className="h-20 w-20 shrink-0 rounded-md border border-rule object-cover sm:h-28 sm:w-28"
+          />
+        </header>
+
+        {specimen ? (
+          <Section
+            aria-labelledby="specimen-heading"
+            className="border-y border-rule py-6"
+          >
+            <p className="font-mono text-[11px] text-muted-foreground">
+              un incidente, completo
+            </p>
+
+            <h2
+              id="specimen-heading"
+              className="type-display measure-tight text-2xl text-foreground sm:text-3xl"
+            >
+              {specimen.title}
+            </h2>
+
+            <p className="measure text-pretty leading-relaxed text-muted-foreground">
+              {specimen.symptom}
+            </p>
+
+            <Fork
+              {...hypothesesToFork(specimen.hypotheses)}
+              takenLabel="era"
+              rejectedLabel="pensé"
+              animate
+              className="pt-1"
             />
-            <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
-          </Avatar>
-        </div>
+
+            <DiagramFigure caption="El SMART limpio no cerraba con un pool degradado. Esa contradicción es la pista: cuando el disco dice estar sano, conviene medir alrededor antes de reemplazarlo.">
+              <ZfsThermalFork />
+            </DiagramFigure>
+
+            {/* En papel el diagrama no está, así que el desenlace va escrito. */}
+            <div className="measure hidden space-y-1 print:block">
+              <p className="text-sm leading-relaxed">{specimen.diagnosis}</p>
+              {specimen.fix ? (
+                <p className="text-sm leading-relaxed">{specimen.fix}</p>
+              ) : null}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] text-muted-foreground">
+              <Badge variant={severityVariant(specimen.severity)}>
+                {specimen.severity}
+              </Badge>
+              <span>{specimen.system}</span>
+              {specimen.date ? <span>{specimen.date}</span> : null}
+              {specimen.duration ? <span>duró {specimen.duration}</span> : null}
+            </div>
+          </Section>
+        ) : null}
+
         <Section>
-          <h2 className="text-xl font-bold">Sobre mi</h2>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
-            {RESUME_DATA.summary}
-          </p>
+          <SectionHeading>Sobre mí</SectionHeading>
+          <div className="measure space-y-3">
+            {RESUME_DATA.summary.split("\n\n").map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 40)}
+                className="text-pretty leading-relaxed text-muted-foreground"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </Section>
+
         <Section>
-          <h2 className="text-xl font-bold">Experiencia laboral</h2>
-          {RESUME_DATA.work.map((work) => {
-            return (
-              <Card key={work.company}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
+          <SectionHeading>Experiencia laboral</SectionHeading>
+          <LogList>
+            {RESUME_DATA.work.map((work) => {
+              const [company, mode] = work.company.split("·");
+
+              return (
+                <LogRow
+                  key={work.company}
+                  meta={
+                    <>
+                      <span className="tabular-nums text-foreground">
+                        {work.start} — {work.end}
+                      </span>
+                      {mode ? <span>{mode.trim()}</span> : null}
+                    </>
+                  }
+                >
+                  <h3 className="text-pretty font-medium leading-snug text-foreground">
+                    {work.link && work.link !== "#" ? (
                       <a
                         className="hover:underline"
                         href={work.link}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {work.company}
+                        {company.trim()}
                       </a>
-
-                      <span className="inline-flex gap-x-1">
-                        {work.badges.map((badge) => (
-                          <Badge
-                            variant="secondary"
-                            className="align-middle text-xs"
-                            key={badge}
-                          >
-                            {badge}
-                          </Badge>
-                        ))}
-                      </span>
-                    </h3>
-                    <div className="text-sm tabular-nums text-muted-foreground">
-                      {work.start} - {work.end}
-                    </div>
-                  </div>
-
-                  <h4 className="font-mono text-sm leading-none">
+                    ) : (
+                      company.trim()
+                    )}
+                  </h3>
+                  <p className="font-mono text-xs text-muted-foreground">
                     {work.title}
-                  </h4>
-                </CardHeader>
-                <CardContent className="mt-2 text-xs">
-                  {work.description}
-                </CardContent>
-              </Card>
-            );
-          })}
+                  </p>
+                  <p className="text-pretty text-sm leading-relaxed text-muted-foreground">
+                    {work.description}
+                  </p>
+                </LogRow>
+              );
+            })}
+          </LogList>
         </Section>
+
+        <Section className="print-force-new-page scroll-mb-16">
+          <SectionHeading>Casos de estudio</SectionHeading>
+          <SectionLede>
+            El problema, las restricciones que no se podían mover, qué decidí y
+            qué descarté.
+          </SectionLede>
+          <CaseStudyGroup cases={featuredCaseStudies()} />
+          <a
+            className="font-mono text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground print:hidden"
+            href="/casos"
+          >
+            Ver todos los casos
+          </a>
+        </Section>
+
+        <Section className="print-force-new-page scroll-mb-16">
+          <SectionHeading>Incidentes y postmortems</SectionHeading>
+          <SectionLede>
+            Problemas reales de producción: qué se vio, qué pensé que era, qué
+            resultó ser y qué dejé para que no vuelva a pasar.
+          </SectionLede>
+          <IncidentList />
+          <a
+            className="font-mono text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground print:hidden"
+            href="/incidentes"
+          >
+            Ver todos los incidentes
+          </a>
+        </Section>
+
+        <Section className="print-force-new-page scroll-mb-16">
+          <SectionHeading>Otros proyectos y trabajos prácticos</SectionHeading>
+          <div className="grid grid-cols-1 gap-3 print:grid-cols-2 print:gap-2 sm:grid-cols-2">
+            {RESUME_DATA.projects.map((project) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                description={project.description}
+                tags={project.techStack}
+                link={project.link?.href}
+                image={project.image}
+              />
+            ))}
+          </div>
+        </Section>
+
         <Section>
-          <h2 className="text-xl font-bold">Educación</h2>
-          <div className="grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
+          <SectionHeading>Skills</SectionHeading>
+          <StackChips stack={RESUME_DATA.skills} />
+        </Section>
+
+        <Section>
+          <SectionHeading>Educación</SectionHeading>
+          <div className="grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {RESUME_DATA.education.map((group) => (
               <Card
                 key={`${group.school}-${group.category}`}
-                className="flex h-full flex-col rounded-md p-4 shadow-md"
+                className="flex h-full break-inside-avoid flex-col rounded-md border border-rule p-4"
               >
                 <CardHeader className="p-0">
                   {group.link !== "#" ? (
@@ -192,21 +317,18 @@ export default function Page() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <h3 className="text-base font-semibold leading-tight hover:underline">
+                      <h3 className="text-sm font-medium leading-tight hover:underline">
                         {group.school}
                       </h3>
                     </a>
                   ) : (
-                    <h3 className="text-base font-semibold leading-tight">
+                    <h3 className="text-sm font-medium leading-tight">
                       {group.school}
                     </h3>
                   )}
-                  <p className="font-mono text-xs text-muted-foreground">
-                    {group.category}
+                  <p className="font-mono text-[11px] text-muted-foreground">
+                    {group.category} · {group.period}
                   </p>
-                  <div className="text-xs tabular-nums text-muted-foreground">
-                    {group.period}
-                  </div>
                 </CardHeader>
                 <CardContent className="mt-3 flex flex-1 flex-col space-y-2 p-0 text-xs">
                   {group.courses.map((c) => (
@@ -216,16 +338,16 @@ export default function Page() {
                           href={c.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-medium leading-tight hover:underline"
+                          className="font-medium leading-tight text-foreground hover:underline"
                         >
                           {c.degree}
                         </a>
                       ) : (
-                        <div className="font-medium leading-tight">
+                        <div className="font-medium leading-tight text-foreground">
                           {c.degree}
                         </div>
                       )}
-                      <div className="text-[11px] text-muted-foreground">
+                      <div className="text-[11px] leading-snug text-muted-foreground">
                         {c.aptitudes}
                       </div>
                     </div>
@@ -235,128 +357,103 @@ export default function Page() {
             ))}
           </div>
         </Section>
+
         <Section>
-          <h2 className="text-xl font-bold">Skills</h2>
-          <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.skills.map((skill) => {
-              return <Badge key={skill}>{skill}</Badge>;
-            })}
+          <SectionHeading>Certificaciones</SectionHeading>
+          <div className="grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {RESUME_DATA.awards.map((award) => (
+              <Card
+                key={award.award}
+                className="flex break-inside-avoid flex-col overflow-hidden rounded-md border border-rule"
+              >
+                {/*
+                 * Las fuentes son capturas de diploma en 4:3. Antes se las
+                 * forzaba a 100x100 y salían deformadas: ahora conservan su
+                 * relación de aspecto y se recortan parejo.
+                 */}
+                <div
+                  data-decoration
+                  className="relative aspect-[4/3] w-full border-b border-rule bg-muted print:hidden"
+                >
+                  <Image
+                    src={award.url}
+                    alt={`Certificado: ${award.award}`}
+                    fill
+                    loading="lazy"
+                    sizes="(min-width: 1024px) 220px, (min-width: 640px) 45vw, 90vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-y-1 p-3">
+                  <a
+                    href={award.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-pretty text-sm font-medium leading-snug text-foreground hover:underline"
+                  >
+                    {award.award}
+                  </a>
+                  <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                    {award.year}
+                  </span>
+                </div>
+              </Card>
+            ))}
           </div>
         </Section>
 
-        <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Casos de estudio</h2>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
-            El problema, las restricciones que no se podían mover, qué decidí y
-            qué descarté.
-          </p>
-          <CaseStudyGroup cases={featuredCaseStudies()} />
-          <a
-            className="font-mono text-xs text-muted-foreground hover:underline print:hidden"
-            href="/casos"
-          >
-            Ver todos los casos →
+        <Section className="scroll-mb-16">
+          <SectionHeading>Publicaciones</SectionHeading>
+          <SectionLede>
+            Artículos sobre problemas que me tocó resolver, publicados en
+            LinkedIn.
+          </SectionLede>
+          <LogList>
+            {RESUME_DATA.published.map((published) => (
+              <LogRow
+                key={published.title}
+                meta={<span className="tabular-nums">{published.year}</span>}
+              >
+                <h3 className="text-pretty text-sm font-medium leading-snug">
+                  <a
+                    href={published.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground hover:underline"
+                  >
+                    {published.title}
+                  </a>
+                </h3>
+                {/*
+                 * Nueve resúmenes completos es donde la lectura se vuelve
+                 * pesada: se recortan a dos líneas y el artículo está a un clic.
+                 */}
+                <p className="line-clamp-2 text-pretty text-sm leading-relaxed text-muted-foreground">
+                  {published.pub}
+                </p>
+              </LogRow>
+            ))}
+          </LogList>
+        </Section>
+
+        {/* El QR deja de estar al lado del nombre y queda donde se usa. */}
+        <aside
+          data-decoration
+          className="flex items-center gap-x-4 border-t border-rule pt-6 print:hidden"
+        >
+          <a href="https://wa.me/qr/47SVC4PAQQ2KN1">
+            <Image
+              src="/myqr.png"
+              width={88}
+              height={88}
+              alt="Código QR del WhatsApp de Sergio Scardigno"
+              className="rounded-md border border-rule"
+            />
           </a>
-        </Section>
-        <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">
-            Otros proyectos y trabajos prácticos
-          </h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
-            {RESUME_DATA.projects.map((project) => {
-              return (
-                <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.techStack}
-                  link={"link" in project ? project.link.href : undefined}
-                />
-              );
-            })}
-          </div>
-        </Section>
-        <Section>
-          <h2 className="mt-3 text-xl font-bold">Certificaciones</h2>
-          <div className="grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
-            {RESUME_DATA.awards.map((awards) => {
-              return (
-                <Card
-                  key={awards.award}
-                  className="flex h-full flex-col rounded-md p-4 shadow-md"
-                >
-                  <CardHeader className="flex flex-1 flex-col gap-3 p-0 sm:flex-row sm:items-start">
-                    <Image
-                      src={awards.url}
-                      width={100}
-                      height={100}
-                      alt={`Certificado: ${awards.award}`}
-                      className="mx-auto shrink-0 rounded-lg shadow-lg sm:mx-0"
-                    />
-                    <div className="flex min-w-0 flex-1 flex-col justify-start text-center sm:text-left">
-                      <p className="text-sm">
-                        <a
-                          href={awards.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-foreground hover:underline"
-                        >
-                          {awards.award}
-                        </a>
-                      </p>
-                      <div className="text-sm tabular-nums text-muted-foreground">
-                        {awards.year}
-                      </div>
-                    </div>
-                  </CardHeader>
-                </Card>
-              );
-            })}
-          </div>
-        </Section>
-        <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="mt-3 text-xl font-bold">Incidentes y postmortems</h2>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
-            Problemas reales de producción: qué se vio, qué pensé que era, qué
-            resultó ser y qué dejé para que no vuelva a pasar.
+          <p className="measure-tight font-mono text-xs leading-relaxed text-muted-foreground">
+            Escaneá para escribirme por WhatsApp, o usá el correo de arriba.
           </p>
-          <IncidentList />
-          <a
-            className="font-mono text-xs text-muted-foreground hover:underline print:hidden"
-            href="/incidentes"
-          >
-            Ver todos los incidentes →
-          </a>
-        </Section>
-        <Section>
-          <h2 className="mt-3 text-xl font-bold">Publicaciones</h2>
-          <p>Contribuciones en trabajos publicados / sitios web / LinkedIn</p>
-          {RESUME_DATA.published.map((published) => {
-            return (
-              <Card key={published.title}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <p className="mt-0 text-sm">
-                      <a
-                        href={published.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-foreground hover:underline"
-                      >
-                        <span className="font-bold">{published.title}</span>
-                      </a>
-                      <br />
-                      {published.pub}
-                    </p>
-                    <div className="text-sm tabular-nums text-muted-foreground">
-                      {published.year}
-                    </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            );
-          })}
-        </Section>
+        </aside>
       </section>
 
       <CommandMenu

@@ -1,25 +1,156 @@
-import {
-  AmbitLogo,
-  BarepapersLogo,
-  BimLogo,
-  CDGOLogo,
-  ClevertechLogo,
-  ConsultlyLogo,
-  EvercastLogo,
-  Howdy,
-  JarockiMeLogo,
-  JojoMobileLogo,
-  Minimal,
-  MobileVikingsLogo,
-  MonitoLogo,
-  NSNLogo,
-  ParabolLogo,
-  TastyCloudLogo,
-  YearProgressLogo,
-} from "@/images/logos";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 import { CASE_STUDIES } from "./case-studies";
 import { INCIDENTS } from "./incidents";
+
+/**
+ * Los proyectos van en una const anotada, no dentro del `as const`: así
+ * `image` puede existir como opcional aunque todavía no haya ninguna captura
+ * cargada. Dentro del `as const`, una clave que ningún elemento tiene se
+ * resuelve a `unknown` y el build se rompe.
+ */
+export interface ResumeProject {
+  title: string;
+  techStack: readonly string[];
+  description: string;
+  link?: { label: string; href: string };
+  /** Captura del proyecto en public/img. Si falta, la tarjeta queda en texto. */
+  image?: { src: string; alt: string; width: number; height: number };
+}
+
+const PROJECTS: readonly ResumeProject[] = [
+  {
+    title: "OFICIA · Gestión jurídica compatible con Lex-Doctor 11",
+    techStack: ["C#", "WinForms", ".NET Framework 4.8", "Firebird"],
+    description:
+      "Reconstrucción funcional de un sistema de gestión para estudios jurídicos, escrita desde cero en C# sobre Firebird embebido. Reproduce la estructura de 52 tablas del sistema de referencia para importar los datos de un estudio sin pérdidas, y corre en puesto único o con servidor y terminales. Trae una autoprueba de 511 comprobaciones. No es Lex-Doctor ni está afiliado: el código, los textos y los íconos son propios, y la documentación declara el límite del método en vez de presentarlo como un clean-room estricto.",
+  },
+  {
+    title: "Bot Base · Plantilla de bot de WhatsApp para empresas",
+    techStack: [
+      "Python",
+      "FastAPI",
+      "Celery",
+      "Postgresql",
+      "Next.js",
+      "WhatsApp Cloud API",
+      "RAG",
+    ],
+    description:
+      "Bot conversacional sobre la Cloud API de Meta para ordenar atención de alto volumen: responde el primer contacto, releva datos, prioriza y deriva a un humano con contexto. Los agentes atienden desde un panel propio, sin herramientas de terceros. Resuelve lo que rompe a un bot en producción real: ráfagas de mensajes, reintentos duplicados del webhook y la ventana de 24 horas de WhatsApp. Salió de generalizar el bot que ya estaba andando para un cliente.",
+    link: {
+      label: "github.com/sergio-scardigno/bot-base",
+      href: "https://github.com/sergio-scardigno/bot-base",
+    },
+  },
+  {
+    title: "Sistema Rampazzo · Gestión de un estudio previsional",
+    techStack: ["Python", "PySide6", "SQLite", "MongoDB Atlas"],
+    description:
+      "Aplicación de escritorio que cubre el ciclo completo del estudio, de la consulta inicial al cobro de honorarios y los turnos de ANSES. Trabaja con base local y sincroniza contra Atlas, así que el problema real era el multi-PC: las claves de Mi ANSES y la clave fiscal se cifran en reposo, y un conflicto de sincronización se resuelve con la versión remota guardando la local para revisarla, en vez de dejar el registro trabado.",
+    link: {
+      label: "github.com/sergio-scardigno/sistema-gestion-rampazzo",
+      href: "https://github.com/sergio-scardigno/sistema-gestion-rampazzo",
+    },
+  },
+  {
+    title: "Presidio · Anonimización local de documentos legales",
+    techStack: ["Python", "Microsoft Presidio", "spaCy", "OCR", "PDF"],
+    description:
+      "Anonimiza expedientes y escrituras sin conexión a ningún servicio externo: detecta personas, domicilios, DNI y CUIT/CUIL, los reemplaza por seudónimos numerados y permite restaurar los datos reales después. Pensado para estudios jurídicos que no pueden subir documentación a la nube.",
+    link: {
+      label: "github.com/sergio-scardigno/presidio",
+      href: "https://github.com/sergio-scardigno/presidio",
+    },
+  },
+  {
+    title: "Mapa Escolar",
+    techStack: [
+      "Angular",
+      "Tailwind",
+      "HTML",
+      "Typescript",
+      "Content",
+      "Full Stack Developer",
+    ],
+    description:
+      "Replicando en Angular el proyecto ABC de la Dirección General de Cultura y Educación de la Provincia de Buenos Aires",
+    link: {
+      label: "mapaescolar.abc.gob.ar",
+      href: "https://mapaescolar.abc.gob.ar",
+    },
+  },
+  {
+    title: "Diera",
+    techStack: ["Laravel", "Tailwind", "PHP", "Postgresql", "Content"],
+    description:
+      "Actualizacion de librerias deprecadas, migracion de base de datos, actualizacion de version de laravel y version de PHP",
+    link: {
+      label: "mapaescolar.abc.gob.ar/diera",
+      href: "https://mapaescolar.abc.gob.ar/diera",
+    },
+  },
+  {
+    title: "Mercado Pago Checkout Pro para Bagisto",
+    techStack: ["PHP", "Laravel 11", "Bagisto 2.3", "Mercado Pago"],
+    description:
+      "Módulo de pago para Bagisto 2.3 sobre Laravel 11, con tarjetas y efectivo. Resuelve el ciclo completo de la pasarela: preferencia, redirección, webhook y los tres estados de retorno.",
+    link: {
+      label: "github.com/sergio-scardigno/Bagisto-Mercado-Pago-Checkout-Pro",
+      href: "https://github.com/sergio-scardigno/Bagisto-Mercado-Pago-Checkout-Pro",
+    },
+  },
+  {
+    title: "Vigilador de cámaras con detección en tiempo real",
+    techStack: ["Python", "YOLOv8", "Telegram", "Cámara IP"],
+    description:
+      "Analiza en tiempo real el video de una cámara IP y avisa por Telegram cuando detecta un patrón concreto. Usa el modelo nano de YOLOv8 porque corre sin GPU, con reconexión automática ante caídas del enlace.",
+    link: {
+      label: "github.com/sergio-scardigno/vigilador-camaras",
+      href: "https://github.com/sergio-scardigno/vigilador-camaras",
+    },
+  },
+  {
+    title: "Vagrant, Docker, Kubernetes, Helm y ArgoCD",
+    techStack: ["Vagrant", "Docker", "Kubernetes", "Helm", "ArgoCD"],
+    description:
+      "El proyecto implica la creación de una máquina virtual con Vagrant, dockerización de una aplicación, automatización del proceso con CI/CD, despliegue en Kubernetes con actualización sin interrupciones, y la implementación de Helm y ArgoCD para la gestión de aplicaciones con y sin Helm en distintos namespaces.",
+    link: {
+      label: "https://gitlab.com/sergioscardigno82/tp-10/",
+      href: "https://gitlab.com/sergioscardigno82/tp-10/",
+    },
+  },
+  {
+    title: "Jenkins y Vagrant",
+    techStack: ["Jenkins", "Vagrant", "CI/CD"],
+    description:
+      "Este instructivo detalla cómo configurar Jenkins, establecer un administrador, crear un pipeline y gestionar los permisos de scripts en el entorno Jenkins. También se incluye una guía para configurar Vagrant y crear una máquina virtual con Ubuntu 22.04.",
+    link: {
+      label: "https://github.com/Scardigno1982/CI-CD",
+      href: "https://github.com/Scardigno1982/TP-7-CI-CD",
+    },
+  },
+  {
+    title:
+      "Integración de una imagen Docker previamente creada al entorno de Kubernetes",
+    techStack: ["Kubernetes", "Minikube", "Docker"],
+    description:
+      "En este trabajo, se llevó a cabo la integración de una imagen Docker previamente creada al entorno de Kubernetes",
+    link: {
+      label: "https://github.com/Scardigno1982/Kubernetes",
+      href: "https://github.com/Scardigno1982/TP-8-Kubernetes",
+    },
+  },
+  {
+    title: "Curso de Backend con Node.js y Express - Argentina Programa 4.0",
+    techStack: ["Node.js", "Express", "Javascript", "MongoDB"],
+    description:
+      "Este repositorio alberga proyectos del curso de Backend con Node.js y Express en el marco de Argentina Programa 4.0. Aquí, aprenderás y explorarás las capacidades de desarrollo backend, arquitectura API RESTful y la interacción con bases de datos tanto relacionales como no relacionales. Los proyectos presentados son el resultado del aprendizaje y la dedicación durante el curso impartido en la Universidad de 3 de Febrero en 2023.",
+    link: {
+      label: "https://github.com/Scardigno1982/backend-2023",
+      href: "https://github.com/Scardigno1982/curso-backend-2023",
+    },
+  },
+];
 
 export const RESUME_DATA = {
   name: "Sergio Scardigno",
@@ -38,7 +169,6 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
   contact: {
     email: "sergioscardigno82@gmail.com",
     tel: "+542214099792",
-    asesoramiento: "/asesoramiento",
     social: [
       {
         name: "GitHub",
@@ -176,12 +306,21 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
   ],
   work: [
     {
+      company: "Grupo Rampazzo",
+      link: "#",
+      badges: [],
+      title: "Programador Full-Stack Developer",
+      start: "2025",
+      end: "now",
+      description:
+        "Sistema de gestión de escritorio para el estudio previsional, con base local y sincronización contra Atlas, y un bot de WhatsApp con panel propio para ordenar la atención de alto volumen. El bot se generalizó después como plantilla reutilizable para otras empresas.",
+    },
+    {
       company:
         "Dirección General de Cultura y Educación de la Provincia de Buenos Aires · Jornada completa",
       link: "https://mapaescolar.abc.gob.ar",
       badges: [],
       title: "Programador Full-Stack Developer | Sysadmin | DevOps",
-      logo: ParabolLogo,
       start: "2023",
       end: "now",
       description:
@@ -192,7 +331,6 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
       link: "#",
       badges: [],
       title: "Programador Full-Stack Developer",
-      logo: ParabolLogo,
       start: "2023",
       end: "now",
       description:
@@ -204,7 +342,6 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
       link: "#",
       badges: [],
       title: "Programador Php Full-Stack Developer",
-      logo: ParabolLogo,
       start: "2018",
       end: "2020",
       description: "Desarrollo Sección de noticias o Blog",
@@ -360,113 +497,5 @@ Me interesa especialmente la ingeniería de plataformas, la automatización, la 
   ],
   // Primero el trabajo propio y actual. Los trabajos prácticos del bootcamp
   // quedan al final: muestran formación, no criterio.
-  projects: [
-    {
-      title: "Presidio · Anonimización local de documentos legales",
-      techStack: ["Python", "Microsoft Presidio", "spaCy", "OCR", "PDF"],
-      description:
-        "Anonimiza expedientes y escrituras sin conexión a ningún servicio externo: detecta personas, domicilios, DNI y CUIT/CUIL, los reemplaza por seudónimos numerados y permite restaurar los datos reales después. Pensado para estudios jurídicos que no pueden subir documentación a la nube.",
-      logo: ConsultlyLogo,
-      link: {
-        label: "github.com/sergio-scardigno/presidio",
-        href: "https://github.com/sergio-scardigno/presidio",
-      },
-    },
-    {
-      title: "Mapa Escolar",
-      techStack: [
-        "Angular",
-        "Tailwind",
-        "HTML",
-        "Typescript",
-        "Content",
-        "Full Stack Developer",
-      ],
-      description:
-        "Replicando en Angular el proyecto ABC de la Dirección General de Cultura y Educación de la Provincia de Buenos Aires",
-      logo: ConsultlyLogo,
-      link: {
-        label: "mapaescolar.abc.gob.ar",
-        href: "https://mapaescolar.abc.gob.ar",
-      },
-    },
-    {
-      title: "Diera",
-      techStack: ["Laravel", "Tailwind", "PHP", "Postgresql", "Content"],
-      description:
-        "Actualizacion de librerias deprecadas, migracion de base de datos, actualizacion de version de laravel y version de PHP",
-      logo: ConsultlyLogo,
-      link: {
-        label: "mapaescolar.abc.gob.ar/diera",
-        href: "https://mapaescolar.abc.gob.ar/diera",
-      },
-    },
-    {
-      title: "Mercado Pago Checkout Pro para Bagisto",
-      techStack: ["PHP", "Laravel 11", "Bagisto 2.3", "Mercado Pago"],
-      description:
-        "Módulo de pago para Bagisto 2.3 sobre Laravel 11, con tarjetas y efectivo. Resuelve el ciclo completo de la pasarela: preferencia, redirección, webhook y los tres estados de retorno.",
-      logo: ConsultlyLogo,
-      link: {
-        label: "github.com/sergio-scardigno/Bagisto-Mercado-Pago-Checkout-Pro",
-        href: "https://github.com/sergio-scardigno/Bagisto-Mercado-Pago-Checkout-Pro",
-      },
-    },
-    {
-      title: "Vigilador de cámaras con detección en tiempo real",
-      techStack: ["Python", "YOLOv8", "Telegram", "Cámara IP"],
-      description:
-        "Analiza en tiempo real el video de una cámara IP y avisa por Telegram cuando detecta un patrón concreto. Usa el modelo nano de YOLOv8 porque corre sin GPU, con reconexión automática ante caídas del enlace.",
-      logo: ConsultlyLogo,
-      link: {
-        label: "github.com/sergio-scardigno/vigilador-camaras",
-        href: "https://github.com/sergio-scardigno/vigilador-camaras",
-      },
-    },
-    {
-      title: "Vagrant, Docker, Kubernetes, Helm y ArgoCD",
-      techStack: ["Vagrant", "Docker", "Kubernetes", "Helm", "ArgoCD"],
-      description:
-        "El proyecto implica la creación de una máquina virtual con Vagrant, dockerización de una aplicación, automatización del proceso con CI/CD, despliegue en Kubernetes con actualización sin interrupciones, y la implementación de Helm y ArgoCD para la gestión de aplicaciones con y sin Helm en distintos namespaces.",
-      logo: ConsultlyLogo,
-      link: {
-        label: "https://gitlab.com/sergioscardigno82/tp-10/",
-        href: "https://gitlab.com/sergioscardigno82/tp-10/",
-      },
-    },
-    {
-      title: "Jenkins y Vagrant",
-      techStack: ["Jenkins", "Vagrant", "CI/CD"],
-      description:
-        "Este instructivo detalla cómo configurar Jenkins, establecer un administrador, crear un pipeline y gestionar los permisos de scripts en el entorno Jenkins. También se incluye una guía para configurar Vagrant y crear una máquina virtual con Ubuntu 22.04.",
-      logo: ConsultlyLogo,
-      link: {
-        label: "https://github.com/Scardigno1982/CI-CD",
-        href: "https://github.com/Scardigno1982/TP-7-CI-CD",
-      },
-    },
-    {
-      title:
-        "Integración de una imagen Docker previamente creada al entorno de Kubernetes",
-      techStack: ["Kubernetes", "Minikube", "Docker"],
-      description:
-        "En este trabajo, se llevó a cabo la integración de una imagen Docker previamente creada al entorno de Kubernetes",
-      logo: ConsultlyLogo,
-      link: {
-        label: "https://github.com/Scardigno1982/Kubernetes",
-        href: "https://github.com/Scardigno1982/TP-8-Kubernetes",
-      },
-    },
-    {
-      title: "Curso de Backend con Node.js y Express - Argentina Programa 4.0",
-      techStack: ["Node.js", "Express", "Javascript", "MongoDB"],
-      description:
-        "Este repositorio alberga proyectos del curso de Backend con Node.js y Express en el marco de Argentina Programa 4.0. Aquí, aprenderás y explorarás las capacidades de desarrollo backend, arquitectura API RESTful y la interacción con bases de datos tanto relacionales como no relacionales. Los proyectos presentados son el resultado del aprendizaje y la dedicación durante el curso impartido en la Universidad de 3 de Febrero en 2023.",
-      logo: ConsultlyLogo,
-      link: {
-        label: "https://github.com/Scardigno1982/backend-2023",
-        href: "https://github.com/Scardigno1982/curso-backend-2023",
-      },
-    },
-  ],
+  projects: PROJECTS,
 } as const;

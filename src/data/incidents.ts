@@ -148,6 +148,17 @@ export const INCIDENTS: readonly Incident[] = [
   // },
 ];
 
+/**
+ * El incidente que abre el CV. Se elige el primero que esté completo —con
+ * fecha y con cómo se resolvió—, no uno fijo por índice: si mañana se agrega
+ * otro más arriba, el hero sigue mostrando uno que se puede contar entero.
+ */
+export function featuredIncident(): Incident | undefined {
+  return INCIDENTS.find(
+    (incident) => incident.date !== undefined && incident.fix !== undefined,
+  );
+}
+
 export function incidentsForCase(slug: CaseSlug): readonly Incident[] {
   return INCIDENTS.filter((incident) => incident.caseSlug === slug);
 }

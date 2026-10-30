@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter } from "next/font/google";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
 
 import "./globals.css";
 import React from "react";
@@ -23,10 +23,27 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-// If loading a variable font, you don't need to specify the font weight
-const inter = Inter({
+/*
+ * Archivo (Omnibus-Type, Buenos Aires) es variable con eje wdth 62-125, así que
+ * el ancho expandido del display y el normal del cuerpo salen de una sola carga.
+ * Pedir `axes` exige NO pasar `weight`: el peso viene del eje wght.
+ */
+const archivo = Archivo({
   subsets: ["latin"],
   display: "swap",
+  axes: ["wdth"],
+  variable: "--font-archivo",
+});
+
+/*
+ * IBM Plex Mono no tiene corte variable, solo pesos estáticos: sin `weight`
+ * explícito el build falla. Se usa únicamente para valores de máquina.
+ */
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
 });
 
 export default function RootLayout({
@@ -35,7 +52,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={inter.className} suppressHydrationWarning>
+    <html
+      lang="es"
+      className={`${archivo.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <ThemeProvider>
           {children}

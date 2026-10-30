@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -17,6 +19,16 @@ module.exports = {
       },
     },
     extend: {
+      /*
+       * extend.fontFamily REEMPLAZA el stack por clave, no lo concatena: si no
+       * se vuelca el default acá, un build donde falle la descarga de Google
+       * Fonts se queda sin ningún fallback. Archivo y Plex llegan por variable
+       * CSS desde app/layout.tsx.
+       */
+      fontFamily: {
+        sans: ["var(--font-archivo)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-plex-mono)", ...defaultTheme.fontFamily.mono],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -51,6 +63,20 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        /*
+         * Tokens propios. No se expone "slate" como color para no pisar la
+         * paleta slate-50..950 de Tailwind: ese valor ya llega por
+         * muted-foreground, que apunta a la misma variable.
+         */
+        ink: "hsl(var(--ink))",
+        paper: "hsl(var(--paper))",
+        rule: "hsl(var(--rule))",
+        signal: {
+          DEFAULT: "hsl(var(--signal))",
+          ink: "hsl(var(--signal-ink))",
+          on: "hsl(var(--signal-on))",
+        },
+        confirm: "hsl(var(--confirm))",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 import { Badge } from "./ui/badge";
-import { Card } from "./ui/card";
+import { LogRow } from "./logbook";
+import { caseStatusVariant } from "@/lib/status";
 import { SITE_HOST } from "@/lib/site";
 import type { CaseStudy } from "@/data/case-studies";
 
@@ -13,32 +14,39 @@ export function CaseStudySummary({ caseStudy }: Props) {
   const href = `/casos/${caseStudy.slug}`;
 
   return (
-    <Card className="break-inside-avoid border border-muted p-3">
-      <div className="flex items-start justify-between gap-x-2">
-        <h4 className="text-pretty text-sm font-semibold leading-tight">
-          <Link className="hover:underline" href={href}>
-            {caseStudy.title}
-          </Link>
-        </h4>
-        <Badge
-          variant={caseStudy.status === "En curso" ? "default" : "secondary"}
-          className="shrink-0"
-        >
-          {caseStudy.status}
-        </Badge>
-      </div>
+    <LogRow
+      meta={
+        <>
+          <Badge
+            variant={caseStatusVariant(caseStudy.status)}
+            className="mb-1 w-fit"
+          >
+            {caseStudy.status}
+          </Badge>
+          {caseStudy.period ? (
+            <span className="tabular-nums">{caseStudy.period}</span>
+          ) : null}
+        </>
+      }
+    >
+      <h4 className="text-pretty font-medium leading-snug text-foreground">
+        <Link className="hover:underline" href={href}>
+          {caseStudy.title}
+        </Link>
+      </h4>
 
-      <p className="mt-1 text-pretty text-xs leading-relaxed text-muted-foreground">
+      <p className="text-pretty text-sm leading-relaxed text-muted-foreground">
         {caseStudy.summary.problem}
       </p>
-      <p className="mt-1 text-pretty text-xs leading-relaxed">
+      <p className="text-pretty text-sm leading-relaxed text-foreground">
         {caseStudy.summary.result}
       </p>
 
-      <div className="mt-1 hidden font-mono text-[10px] underline print:block">
+      {/* En papel el enlace no se puede seguir: va escrito. */}
+      <div className="hidden font-mono text-[10px] text-muted-foreground print:block">
         {SITE_HOST}
         {href}
       </div>
-    </Card>
+    </LogRow>
   );
 }
