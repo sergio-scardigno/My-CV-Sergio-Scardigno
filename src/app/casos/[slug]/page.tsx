@@ -47,8 +47,8 @@ export default function CasoPage({ params }: Props) {
   const incidentes = incidentsForCase(caseStudy.slug);
 
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-background text-foreground print:bg-white print:text-neutral-900">
+    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-0 md:p-16">
+      <section className="mx-auto w-full max-w-3xl space-y-8">
         <Section>
           <Link
             href="/casos"
@@ -62,8 +62,10 @@ export default function CasoPage({ params }: Props) {
 
         {incidentes.length > 0 ? (
           <Section>
-            <h2 className="text-xl font-bold">Incidentes de este sistema</h2>
-            <p className="text-pretty font-mono text-sm text-muted-foreground">
+            <h2 className="type-display-sm text-xl">
+              Incidentes de este sistema
+            </h2>
+            <p className="measure text-pretty leading-relaxed text-muted-foreground">
               Lo que se rompió, contado como pasó.
             </p>
             <IncidentList items={incidentes} />

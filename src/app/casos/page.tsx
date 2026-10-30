@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 
 export default function CasosPage() {
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-background text-foreground print:bg-white print:text-neutral-900">
+    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-0 md:p-16">
+      <section className="mx-auto w-full max-w-3xl space-y-8">
         <Section>
           <Link
             href="/"
@@ -32,8 +32,8 @@ export default function CasosPage() {
             <ArrowLeftIcon className="h-3 w-3" />
             Volver al CV
           </Link>
-          <h1 className="text-2xl font-bold">Casos de estudio</h1>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
+          <h1 className="type-display text-3xl">Casos de estudio</h1>
+          <p className="measure text-pretty leading-relaxed text-muted-foreground">
             Cada caso cuenta el problema, las restricciones que no se podían
             mover, qué decidí y qué descarté. Los que están en curso muestran
             dónde están hoy y qué sigue abierto, en vez de un final prolijo.
@@ -46,13 +46,13 @@ export default function CasosPage() {
               href="/incidentes"
               className="font-mono text-xs text-muted-foreground hover:underline"
             >
-              Ver los incidentes →
+              Ver los incidentes
             </Link>
             <Link
               href="/casos/imprimir"
               className="font-mono text-xs text-muted-foreground hover:underline"
             >
-              Versión para imprimir →
+              Versión para imprimir
             </Link>
           </div>
         </Section>

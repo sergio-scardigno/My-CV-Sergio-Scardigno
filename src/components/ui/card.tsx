@@ -60,7 +60,8 @@ const CardContent = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "text-pretty font-mono text-sm text-muted-foreground",
+      // Sin font-mono: la mono queda reservada para valores de máquina.
+      "text-pretty text-sm leading-relaxed text-muted-foreground",
       className,
     )}
     {...props}

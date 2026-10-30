@@ -2,6 +2,7 @@ import { INCIDENTS } from "@/data/incidents";
 import type { Incident } from "@/data/incidents";
 import { getCaseStudy } from "@/data/case-studies";
 import { IncidentCard } from "./incident-card";
+import { LogList } from "./logbook";
 
 interface Props {
   /** Si se omite, muestra todos. La página de un caso pasa los suyos. */
@@ -10,7 +11,7 @@ interface Props {
 
 export function IncidentList({ items = INCIDENTS }: Props) {
   return (
-    <div className="flex flex-col gap-3">
+    <LogList>
       {items.map((incident) => {
         const caseStudy = incident.caseSlug
           ? getCaseStudy(incident.caseSlug)
@@ -28,6 +29,6 @@ export function IncidentList({ items = INCIDENTS }: Props) {
           />
         );
       })}
-    </div>
+    </LogList>
   );
 }
