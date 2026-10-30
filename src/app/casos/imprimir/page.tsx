@@ -18,13 +18,13 @@ export default function ImprimirPage() {
   })).filter((group) => group.items.length > 0);
 
   return (
-    <main className="container relative mx-auto overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-background text-foreground print:bg-white print:text-neutral-900">
+    <main className="container relative mx-auto overflow-auto p-4 print:p-0 md:p-16">
+      <section className="mx-auto w-full max-w-3xl space-y-8">
         <Section>
-          <h1 className="text-2xl font-bold">
+          <h1 className="type-display text-3xl">
             {RESUME_DATA.name} · Dossier de casos
           </h1>
-          <p className="text-pretty font-mono text-sm text-muted-foreground">
+          <p className="measure text-pretty leading-relaxed text-muted-foreground">
             Todos los casos completos en una sola página, para imprimir o
             guardar como PDF.
           </p>
@@ -35,7 +35,7 @@ export default function ImprimirPage() {
             key={family.id}
             className={index > 0 ? "print-force-new-page" : undefined}
           >
-            <h2 className="text-xl font-bold">{family.label}</h2>
+            <h2 className="type-display-sm text-xl">{family.label}</h2>
             <div className="flex flex-col gap-3">
               {items.map((caseStudy) => (
                 <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />

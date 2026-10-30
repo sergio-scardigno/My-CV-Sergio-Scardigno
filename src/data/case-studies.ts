@@ -10,7 +10,14 @@
  * no existe, se omite el campo.
  */
 
-export type CaseFamily = "oss" | "organismo" | "homelab" | "clientes";
+import type { DiagramKey } from "@/components/diagrams";
+
+export type CaseFamily =
+  | "oss"
+  | "propio"
+  | "organismo"
+  | "homelab"
+  | "clientes";
 
 export type CaseStatus = "En curso" | "En producción" | "Terminado";
 
@@ -23,6 +30,7 @@ export type CaseStatus = "En curso" | "En producción" | "Terminado";
  */
 export type CaseSlug =
   | "presidio-anonimizacion-legal"
+  | "oficia-gestion-juridica"
   | "homelab-proliant-proxmox"
   | "vigilador-camaras-yolo"
   | "looker-studio-meta-ads"
@@ -59,6 +67,11 @@ export interface CaseStudy {
   link?: { label: string; href: string };
   /** Solo los destacados entran en el CV. Cuatro o cinco como máximo. */
   featured?: boolean;
+  /**
+   * El diagrama que le corresponde, si tiene uno dibujado. Es decoración de
+   * pantalla: no se imprime, y nunca es el único portador de un dato.
+   */
+  diagram?: DiagramKey;
   /** ~155 caracteres para la metadata. Si falta, se usa summary.problem. */
   metaDescription?: string;
 }
@@ -72,6 +85,11 @@ export const CASE_FAMILIES: readonly {
     id: "oss",
     label: "Repos públicos",
     blurb: "Código abierto: se puede leer y correr.",
+  },
+  {
+    id: "propio",
+    label: "Desarrollo de soluciones propias",
+    blurb: "Software que nadie pidió: se construye porque el problema existe.",
   },
   {
     id: "organismo",
@@ -101,6 +119,7 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
     period: "2025 - hoy",
     role: "Diseño, desarrollo y despliegue",
     featured: true,
+    diagram: "presidio",
     summary: {
       problem:
         "Un estudio jurídico necesita usar herramientas de IA sobre expedientes con nombres, DNI y domicilios reales, que no pueden salir de su red.",
@@ -156,6 +175,84 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
   },
 
   {
+    slug: "oficia-gestion-juridica",
+    family: "propio",
+    title: "Un sistema de gestión jurídica que se lleva los datos del anterior",
+    status: "En curso",
+    period: "2026 - hoy",
+    role: "Diseño, desarrollo y documentación",
+    featured: true,
+    metaDescription:
+      "Reconstrucción funcional de un sistema de gestión para estudios jurídicos, con la misma estructura de tablas para que los datos migren sin pérdidas.",
+    summary: {
+      problem:
+        "Un estudio que lleva años sobre un sistema de gestión cerrado queda atado a él: sus expedientes, movimientos y cuentas viven en una base de la que no hay cómo sacarlos sin perder nada por el camino.",
+      result:
+        "Un programa escrito desde cero que reproduce la estructura de 52 tablas del sistema de origen, de modo que la migración es una copia byte por byte y no una traducción.",
+    },
+    problem:
+      "Un estudio jurídico que trabaja hace años sobre un sistema de gestión cerrado no se puede mudar. Las personas, los procesos, las partes, los movimientos, la agenda, las pruebas y las cuentas están en una base propietaria, y cualquier alternativa lo obliga a cargar todo de nuevo a mano o a aceptar una migración que deja cosas en el camino. El problema no era escribir otro programa de gestión: era que el estudio pudiera llevarse lo suyo.",
+    constraints: [
+      "Los datos tienen que pasar intactos: mismos identificadores, sellos de edición, nulos y convenciones de grabado",
+      "El binario del sistema de origen está empaquetado y protegido, así que extraerle la lógica de forma estática no es viable",
+      "El contenido de fábrica del proveedor —modelos de escritos, sets de cálculo, diccionario— es obra ajena y no se puede copiar",
+      "Tiene que correr en las máquinas que el estudio ya tiene, en red local y sin instalar nada",
+      "Los usuarios ya saben operar el sistema anterior: cambiarles la forma de trabajar les cuesta el día a día",
+    ],
+    decisions: [
+      {
+        choice:
+          "Reproducir las mismas 52 tablas del sistema de origen en una base Firebird propia",
+        instead: "diseñar un esquema nuevo y escribir un conversor",
+        why: "con el mismo esquema la migración es una copia byte por byte y los procesos del estudio siguen apuntando a las tablas de referencia; un esquema nuevo mete una traducción en el medio, y la traducción es justo donde se pierden los sellos, los nulos y las convenciones de grabado",
+      },
+      {
+        choice:
+          "Rehacer la disposición de las pantallas tal como el estudio ya las usa, con la barra de teclas F2 a F12, las solapas al pie y los punteros",
+        instead: "diseñar una interfaz nueva y mejor",
+        why: "el estudio trabaja con esas pantallas todos los días; una interfaz mejor en abstracto los obliga a reaprender el oficio, que es exactamente el costo que la migración tenía que evitar",
+      },
+      {
+        choice:
+          "Declarar por escrito que el método no es un clean-room estricto",
+        instead:
+          "presentarlo como clean-room y dejar el punto flojo sin mencionar",
+        why: "la observación y la escritura estuvieron a cargo de la misma persona, así que no se puede afirmar que el original no fue visto; sostener una garantía que no se tiene es más frágil que admitir el límite y dejar el código a la vista para que cualquiera lo verifique",
+      },
+      {
+        choice:
+          "Importar sólo las filas de modelos, sets y diccionario que creó o modificó el estudio, e informar cuántas quedaron afuera",
+        instead: "copiar la base de origen entera",
+        why: "los datos del estudio son del estudio y se los puede llevar, pero el contenido de fábrica es obra del proveedor; el informe deja el recorte a la vista en vez de que el estudio lo descubra usándolo",
+      },
+      {
+        choice:
+          "C# con WinForms, compilado con el .NET Framework 4.8 que ya trae Windows",
+        instead: "un stack actual o una aplicación web",
+        why: "no hay que instalar runtime ni servidor en las máquinas del estudio: se compila con lo que el sistema operativo ya tiene y queda un ejecutable",
+      },
+    ],
+    result: [
+      "92 archivos de C# y unas 39.800 líneas, con una autoprueba de 511 comprobaciones que corre sobre una carpeta temporal y nunca toca los datos",
+      "Las mismas 52 tablas en Firebird embebido, con un importador que respalda antes, compara después y no duplica si se lo corre dos veces",
+      "Funciona en puesto único o con servidor y terminales: red cifrada, bloqueos compartidos entre terminales y respaldo diario",
+      "Módulos de personas, procesos, movimientos, agenda, gestiones, pruebas, contables y caja, modelos y escritos, base jurídica, parámetros y supervisión",
+      "Motor de escritos que entiende la sintaxis de los modelos del sistema de origen, más 78 modelos propios redactados desde cero",
+      "Cálculos contables con nueve pautas: interés fijo, tasas variables, índices, aritmética, memorias y condicionales",
+      "Código bajo MIT y contenido redactado bajo CC BY-SA 4.0",
+    ],
+    open: [
+      "Las facturas no emiten CAE de la AFIP ni salen por correo: hace falta el certificado del estudio",
+      "En listados faltan las solapas de rubros contables y pruebas, y el formato por modelo de listado",
+      "En movimientos faltan la importación, la presentación en PDF y los archivos externos",
+      "La base jurídica todavía no tiene compilación",
+    ],
+    wrong:
+      "El método no es un clean-room estricto y no tiene sentido disimularlo: observar el sistema de origen y escribir el código lo hizo la misma persona, así que no se puede afirmar que el original no fue visto. Para una garantía estricta habría que rehacerlo con dos equipos separados y una especificación funcional cerrada. Está escrito en la documentación, en la sección del método, en vez de quedar tapado.",
+    stack: ["C#", "WinForms", ".NET Framework 4.8", "Firebird", "SQL"],
+  },
+
+  {
     slug: "homelab-proliant-proxmox",
     family: "homelab",
     title: "Infraestructura propia sobre un ProLiant de segunda mano",
@@ -163,6 +260,7 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
     period: "2026 - hoy",
     role: "Diseño, operación y mantenimiento",
     featured: true,
+    diagram: "homelab",
     summary: {
       problem:
         "Los servicios y los datos propios corrían sobre una PC de escritorio reciclada con un Phenom y 4 GB de RAM, que ya no daba abasto.",
