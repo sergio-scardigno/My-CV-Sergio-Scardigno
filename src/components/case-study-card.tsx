@@ -88,6 +88,23 @@ export function CaseStudyCard({ caseStudy, headingLevel = 3 }: Props) {
             <span className="tabular-nums">{caseStudy.period}</span>
           ) : null}
           <span>{caseStudy.role}</span>
+
+          {/*
+           * El repo, escrito. El título también enlaza ahí, pero un título que
+           * es un enlace no se lee como un enlace: nadie lo prueba. Acá la URL
+           * está a la vista, y en papel queda escrita, que es la única forma
+           * de seguirla desde una hoja.
+           */}
+          {caseStudy.link ? (
+            <a
+              className="underline underline-offset-4 hover:text-foreground"
+              href={caseStudy.link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {caseStudy.link.label}
+            </a>
+          ) : null}
         </div>
       </div>
 
