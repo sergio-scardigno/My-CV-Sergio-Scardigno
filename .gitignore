@@ -40,3 +40,4 @@ next-env.d.ts
 
 /.opencode/
 AGENTS.md
+.claude/
