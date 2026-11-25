@@ -31,6 +31,8 @@ export type CaseStatus = "En curso" | "En producción" | "Terminado";
 export type CaseSlug =
   | "presidio-anonimizacion-legal"
   | "oficia-gestion-juridica"
+  | "factura-api-arca"
+  | "bot-base-whatsapp"
   | "homelab-proliant-proxmox"
   | "vigilador-camaras-yolo"
   | "looker-studio-meta-ads"
@@ -72,6 +74,12 @@ export interface CaseStudy {
    * pantalla: no se imprime, y nunca es el único portador de un dato.
    */
   diagram?: DiagramKey;
+  /**
+   * La grabación de la pantalla, si existe. Mismo criterio que el diagrama: es
+   * decoración de pantalla, no se imprime y nada de lo que muestra falta en el
+   * texto. El archivo vive en public/videos.
+   */
+  video?: { src: string; caption: string };
   /** ~155 caracteres para la metadata. Si falta, se usa summary.problem. */
   metaDescription?: string;
 }
@@ -250,6 +258,183 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
     wrong:
       "El método no es un clean-room estricto y no tiene sentido disimularlo: observar el sistema de origen y escribir el código lo hizo la misma persona, así que no se puede afirmar que el original no fue visto. Para una garantía estricta habría que rehacerlo con dos equipos separados y una especificación funcional cerrada. Está escrito en la documentación, en la sección del método, en vez de quedar tapado.",
     stack: ["C#", "WinForms", ".NET Framework 4.8", "Firebird", "SQL"],
+  },
+
+  {
+    // TODO: el `link` queda afuera hasta que el repo sea público.
+    // TODO: el epígrafe del video es genérico a propósito: cambialo por lo que
+    // la grabación muestra de verdad.
+    slug: "factura-api-arca",
+    family: "propio",
+    title: "Facturación electrónica con ARCA sin entrar al facturador",
+    status: "En curso",
+    period: "nov. 2026 - hoy",
+    role: "Diseño, desarrollo y despliegue",
+    diagram: "factura",
+    video: {
+      src: "/videos/factura-api.mp4",
+      caption: "Factura API, grabada en pantalla.",
+    },
+    metaDescription:
+      "API de facturación electrónica contra ARCA: numera con un turno exclusivo, pide el CAE y genera el PDF con QR a demanda, sin perder ni duplicar una factura.",
+    summary: {
+      problem:
+        "Todos los meses hay que emitir las mismas facturas de servicios entrando a mano al facturador de ARCA: es repetitivo, es propenso a errores y no se integra con ningún otro sistema.",
+      result:
+        "Una API que numera, emite y pide el CAE sin perder una factura que ARCA ya aprobó ni duplicar otra por un reintento, y que genera el PDF con QR a demanda.",
+    },
+    problem:
+      "Emitir todos los meses las mismas facturas de servicios implica entrar a mano al facturador de ARCA y repetir la misma carga. Es trabajo repetitivo, es donde aparecen los errores de tipeo, y el resultado no queda en ningún lado del que otro sistema pueda leerlo.",
+    constraints: [
+      "No se podía emitir dos veces la misma factura: ni por un reintento, ni por un corte de red, ni por dos pedidos simultáneos",
+      "No se podía perder una factura que ARCA aprobó, aunque la API se caiga justo en ese momento",
+      "Las claves y los certificados no podían quedar en texto plano",
+      "No podía haber un servicio pago de terceros entre la API y ARCA",
+    ],
+    decisions: [
+      {
+        choice:
+          "Tomar un turno de numeración con pg_advisory_lock en una conexión dedicada, con su propio pool, y guardar la factura como pendiente, con commit, antes de llamar a ARCA",
+        instead: "pedir el número y emitir dentro de una sola transacción",
+        why: "si la API se cae después de que ARCA aprueba, la factura ya está grabada y se la puede reconciliar; dentro de una sola transacción, ese mismo corte la hace desaparecer de este lado y existir del otro. La prueba de carga con k6 destapó un bloqueo circular cuando las dos conexiones compartían pool, y por eso el turno tiene uno exclusivo",
+      },
+      {
+        choice:
+          "Reconciliar: consultar en ARCA con FECompConsultar si ese número ya existe y, si coincide, tomar su CAE",
+        instead: "reintentar a ciegas cuando ARCA no responde",
+        why: "un timeout no dice si ARCA recibió el pedido o no, y reintentar sobre esa duda es exactamente cómo se emite una factura duplicada; preguntar primero convierte la duda en un dato",
+      },
+      {
+        choice: "Un header Idempotency-Key en la emisión",
+        instead: "confiar en que el cliente no repita el pedido",
+        why: "el mismo pedido con la misma clave devuelve la factura que ya se emitió en vez de una nueva, así que reintentar desde afuera es seguro",
+      },
+      {
+        choice:
+          "Generar los PDF a demanda con Jinja2 y WeasyPrint, con el QR de la RG 4892",
+        instead: "guardar los PDF emitidos",
+        why: "el único estado es PostgreSQL, así que migrar a un VPS es mover la base y nada más: no hay una carpeta de archivos que respaldar aparte. El render pasó a un pool de procesos porque frenaba al servidor web, y eso también lo mostró la prueba de carga",
+      },
+      {
+        choice:
+          "Facturas programadas que generan un borrador mensual, avisan por mail y se emiten con un clic después de revisar el importe",
+        instead: "facturación recurrente que emite sola",
+        why: "nada sale hacia ARCA sin que lo vea una persona: una factura emitida no se da de baja, se corrige con una nota de crédito, y ese es un trámite que no se arregla cambiando una línea de código",
+      },
+    ],
+    result: [
+      "Facturas A, B y C, y notas de crédito y débito, con cálculo de IVA por alícuota usando Decimal",
+      "Probada de punta a punta contra la homologación de ARCA, con CAE reales en ese entorno",
+      "Consulta al padrón de ARCA por CUIT para completar los datos del cliente",
+      "Envío por mail, facturas programadas y borradores para revisar antes de emitir",
+      "Front propio en Vite, sin framework, para el uso mensual",
+      "Más de 1000 tests automáticos; 20 emisiones en paralelo dan números correlativos sin duplicados; 39 de 41 tareas del plan completas",
+    ],
+    open: [
+      "Falta el despliegue en un VPS, con Caddy para TLS y respaldos: hasta entonces, las facturas programadas solo se preparan con la PC prendida",
+      "La condición de IVA que devuelve el padrón todavía no está verificada con datos reales de producción",
+    ],
+    stack: [
+      "Python 3.12",
+      "FastAPI",
+      "PostgreSQL 16",
+      "SQLAlchemy 2",
+      "Alembic",
+      "zeep (SOAP)",
+      "WeasyPrint",
+      "Docker",
+      "Vite",
+    ],
+  },
+
+  {
+    // TODO: el epígrafe del video es genérico a propósito: cambialo por lo que
+    // la grabación muestra de verdad.
+    slug: "bot-base-whatsapp",
+    family: "oss",
+    title: "Atención por WhatsApp con bots especialistas y un panel propio",
+    status: "En curso",
+    period: "2025 - hoy",
+    role: "Diseño, desarrollo y despliegue",
+    diagram: "bot-base",
+    video: {
+      src: "/videos/bot-base.mp4",
+      caption: "Bot Base, grabado en pantalla.",
+    },
+    metaDescription:
+      "Atención de WhatsApp de alto volumen: el webhook encola, un derivador elige entre bots especialistas y el equipo cierra lo que falta en un panel propio.",
+    summary: {
+      problem:
+        "Una empresa con mucho volumen de mensajes por WhatsApp contesta todo a mano: los casos importantes se mezclan con las consultas repetidas y, cuando alguien toma un chat, no tiene el contexto de lo que ya se habló.",
+      result:
+        "Un derivador que elige entre bots especialistas, cada uno con su conocimiento y sus reglas, y un panel propio donde el equipo toma y resuelve lo que el bot no cierra.",
+    },
+    problem:
+      "Las empresas con mucho volumen de mensajes por WhatsApp contestan todo a mano. Los casos importantes se mezclan con las consultas repetidas, y cuando alguien toma un chat no tiene el contexto de lo que ya se habló: la persona que escribe repite lo mismo dos veces, y la que atiende empieza de cero.",
+    constraints: [
+      "No se podía responder una vez por cada mensaje de una ráfaga, ni duplicar respuestas cuando Meta reintenta el webhook",
+      "No se podía depender de una herramienta de atención de terceros",
+      "No se podía atar el bot a un solo proveedor ni a un solo modelo de IA",
+      "Un número vinculado por QR no podía quedar bloqueado por enviar como un robot",
+    ],
+    decisions: [
+      {
+        choice:
+          "El webhook valida la firma con X-Hub-Signature-256, contesta 200 y encola el trabajo en Celery, con debounce de ráfagas y deduplicación por wamid en Redis y en la base",
+        instead: "armar la respuesta adentro del webhook",
+        why: "Meta reintenta: si la respuesta se arma adentro, el reintento manda el mensaje dos veces y una demora lo pierde. Con la cola en el medio, el reintento no tiene efecto y una ráfaga de mensajes se contesta una sola vez",
+      },
+      {
+        choice:
+          "Un derivador —Recepción— que elige entre bots especialistas, cada uno con sus instrucciones, su base de conocimiento en pgvector y las reglas aprobadas en Entrenamiento, que mandan sobre todo lo anterior",
+        instead: "un solo bot con un prompt gigante",
+        why: "cada área se ajusta sin romper las demás: corregir lo que responde una no cambia lo que responden las otras, y las reglas aprobadas tienen la última palabra sobre las instrucciones y el conocimiento",
+      },
+      {
+        choice:
+          "Panel propio en Next.js: bandeja de pendientes, tomar y resolver conversaciones, resumen de derivación, etiquetas, prioridad, equipos, leads, estadísticas, logs y auditoría",
+        instead: "usar una plataforma de atención externa",
+        why: "la restricción era no depender de una herramienta de terceros, y con el panel adentro el contexto de la conversación, el resumen de la derivación y la auditoría quedan en el mismo lugar que el bot, en vez de repartidos entre dos sistemas que hay que sincronizar",
+      },
+      {
+        choice:
+          "OpenRouter, OpenAI, Gemini, Anthropic y OpenCode Go, con claves cifradas con Fernet cargadas desde el panel y modelo elegible por bot, con fallback al predeterminado",
+        instead: "un solo proveedor de IA",
+        why: "cambiar de proveedor no obliga a tocar el código, y elegir cuál conviene deja de ser a ojo: un «Probar bot» muestra qué conocimiento y qué reglas usó cada respuesta, y un comparador corre hasta 6 modelos con el mismo contexto",
+      },
+      {
+        choice:
+          "También WhatsApp común vinculado por QR, con un servicio en Node (Fastify y Baileys) y una cola de envío por número: «escribiendo…» proporcional al largo, pausas aleatorias, topes por minuto, hora y día, y calentamiento de números nuevos",
+        instead: "solo la API oficial",
+        why: "es el número que la empresa ya usa, sin alta previa en la Cloud API. Asumo el riesgo de que no es un canal oficial, y por eso el envío se regula: un número que escribe como un robot termina bloqueado",
+      },
+    ],
+    result: [
+      "Tres canales: WhatsApp oficial por la Cloud API, WhatsApp vinculado por QR y Messenger. Cada conversación se responde por el número por el que entró",
+      "Transcripción de audios a texto",
+      "La ventana de 24 h de la Cloud API se resuelve con el envío de plantillas aprobadas desde el panel",
+      "Más de 400 tests automáticos entre Python y Node, y un manual de uso de 28 capítulos",
+      "Pensado como plantilla: dar de alta una empresa nueva está documentado paso a paso",
+    ],
+    open: [
+      "El canal por QR no es oficial: Meta puede suspender un número sin aviso, y un cambio de protocolo obliga a actualizar Baileys",
+      "Las plantillas con encabezado de imagen o video, o con botones de URL dinámica, todavía no se pueden enviar desde el panel",
+    ],
+    stack: [
+      "FastAPI",
+      "Celery",
+      "Redis",
+      "PostgreSQL",
+      "pgvector",
+      "Next.js",
+      "Fastify",
+      "Baileys",
+      "WhatsApp Cloud API",
+    ],
+    link: {
+      label: "github.com/sergio-scardigno/bot-base",
+      href: "https://github.com/sergio-scardigno/bot-base",
+    },
   },
 
   {

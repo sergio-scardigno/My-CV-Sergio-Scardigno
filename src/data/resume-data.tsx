@@ -1,5 +1,6 @@
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 import { CASE_STUDIES } from "./case-studies";
+import type { CaseSlug } from "./case-studies";
 import { INCIDENTS } from "./incidents";
 
 /**
@@ -13,11 +14,31 @@ export interface ResumeProject {
   techStack: readonly string[];
   description: string;
   link?: { label: string; href: string };
+  /**
+   * El caso de estudio de este proyecto, si tiene uno escrito. Es aparte de
+   * `link`: el enlace de arriba va al repo, y este al formato largo.
+   */
+  caseStudy?: CaseSlug;
   /** Captura del proyecto en public/img. Si falta, la tarjeta queda en texto. */
   image?: { src: string; alt: string; width: number; height: number };
 }
 
 const PROJECTS: readonly ResumeProject[] = [
+  {
+    // TODO: sin `link` hasta que el repo sea público.
+    title: "Factura API · Facturación electrónica con ARCA",
+    techStack: [
+      "Python 3.12",
+      "FastAPI",
+      "PostgreSQL 16",
+      "zeep (SOAP)",
+      "WeasyPrint",
+      "Docker",
+    ],
+    description:
+      "API para emitir facturas contra ARCA sin entrar al facturador: numera, pide el CAE y genera el PDF con el QR de la RG 4892 a demanda. Graba la factura antes de llamar a ARCA, así un corte no pierde una que ya fue aprobada, y un timeout se reconcilia consultando si el número existe, en vez de reintentar a ciegas. Lo programado queda en borrador hasta que alguien revisa el importe.",
+    caseStudy: "factura-api-arca",
+  },
   {
     title: "OFICIA · Gestión jurídica compatible con Lex-Doctor 11",
     techStack: ["C#", "WinForms", ".NET Framework 4.8", "Firebird"],
@@ -41,6 +62,7 @@ const PROJECTS: readonly ResumeProject[] = [
       label: "github.com/sergio-scardigno/bot-base",
       href: "https://github.com/sergio-scardigno/bot-base",
     },
+    caseStudy: "bot-base-whatsapp",
   },
   {
     title: "Sistema Rampazzo · Gestión de un estudio previsional",

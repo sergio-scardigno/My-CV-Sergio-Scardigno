@@ -3,6 +3,7 @@ import { Fork } from "./fork";
 import { StackChips } from "./stack-chips";
 import { DiagramFigure } from "./diagrams/figure";
 import { DIAGRAMS } from "./diagrams";
+import { VideoFigure } from "./video-figure";
 import { caseStatusVariant, resultLabel } from "@/lib/status";
 import type { CaseStudy } from "@/data/case-studies";
 
@@ -89,6 +90,18 @@ export function CaseStudyCard({ caseStudy, headingLevel = 3 }: Props) {
           <span>{caseStudy.role}</span>
         </div>
       </div>
+
+      {/*
+       * El video va arriba del contenido y no al costado: la columna de texto
+       * ya ocupa 66ch de los 48rem de la página, así que al costado no entra
+       * nada legible.
+       */}
+      {caseStudy.video ? (
+        <VideoFigure
+          src={caseStudy.video.src}
+          caption={caseStudy.video.caption}
+        />
+      ) : null}
 
       <div className="measure space-y-3">
         <Block label="problema">
