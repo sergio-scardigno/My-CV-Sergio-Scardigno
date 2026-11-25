@@ -40,12 +40,6 @@ const PROJECTS: readonly ResumeProject[] = [
     caseStudy: "factura-api-arca",
   },
   {
-    title: "OFICIA · Gestión jurídica compatible con Lex-Doctor 11",
-    techStack: ["C#", "WinForms", ".NET Framework 4.8", "Firebird"],
-    description:
-      "Reconstrucción funcional de un sistema de gestión para estudios jurídicos, escrita desde cero en C# sobre Firebird embebido. Reproduce la estructura de 52 tablas del sistema de referencia para importar los datos de un estudio sin pérdidas, y corre en puesto único o con servidor y terminales. Trae una autoprueba de 511 comprobaciones. No es Lex-Doctor ni está afiliado: el código, los textos y los íconos son propios, y la documentación declara el límite del método en vez de presentarlo como un clean-room estricto.",
-  },
-  {
     title: "Bot Base · Plantilla de bot de WhatsApp para empresas",
     techStack: [
       "Python",
