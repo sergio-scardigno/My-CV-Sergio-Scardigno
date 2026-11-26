@@ -291,6 +291,9 @@ export default function Page() {
                 description={project.description}
                 tags={project.techStack}
                 link={project.link?.href}
+                caseHref={
+                  project.caseStudy ? `/casos/${project.caseStudy}` : undefined
+                }
                 image={project.image}
               />
             ))}

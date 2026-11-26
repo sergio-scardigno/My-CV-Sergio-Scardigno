@@ -1,18 +1,29 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Card } from "./ui/card";
 import { StackChips } from "./stack-chips";
+import { SITE_HOST } from "@/lib/site";
 
 interface Props {
   title: string;
   description: string;
   tags: readonly string[];
   link?: string;
+  /** Ruta al caso de estudio, si el proyecto tiene uno escrito. */
+  caseHref?: string;
   /** Captura del proyecto. Sin ella la tarjeta queda igual, solo en texto. */
   image?: { src: string; alt: string; width: number; height: number };
 }
 
-export function ProjectCard({ title, description, tags, link, image }: Props) {
+export function ProjectCard({
+  title,
+  description,
+  tags,
+  link,
+  caseHref,
+  image,
+}: Props) {
   return (
     <Card className="flex break-inside-avoid flex-col overflow-hidden rounded-md border border-rule">
       {image ? (
@@ -57,6 +68,25 @@ export function ProjectCard({ title, description, tags, link, image }: Props) {
         <p className="text-pretty text-xs leading-relaxed text-muted-foreground">
           {description}
         </p>
+
+        {/*
+         * El enlace al caso va aparte del título: el título lleva al repo, y
+         * esto al formato largo. En papel, la ruta escrita.
+         */}
+        {caseHref ? (
+          <>
+            <Link
+              href={caseHref}
+              className="w-fit font-mono text-[10px] text-muted-foreground underline underline-offset-4 hover:text-foreground print:hidden"
+            >
+              El caso completo
+            </Link>
+            <div className="hidden font-mono text-[10px] text-muted-foreground print:block">
+              {SITE_HOST}
+              {caseHref}
+            </div>
+          </>
+        ) : null}
 
         <StackChips stack={tags} className="mt-auto pt-1" />
       </div>

@@ -3,6 +3,7 @@ import { Fork } from "./fork";
 import { StackChips } from "./stack-chips";
 import { DiagramFigure } from "./diagrams/figure";
 import { DIAGRAMS } from "./diagrams";
+import { VideoFigure } from "./video-figure";
 import { caseStatusVariant, resultLabel } from "@/lib/status";
 import type { CaseStudy } from "@/data/case-studies";
 
@@ -87,8 +88,37 @@ export function CaseStudyCard({ caseStudy, headingLevel = 3 }: Props) {
             <span className="tabular-nums">{caseStudy.period}</span>
           ) : null}
           <span>{caseStudy.role}</span>
+
+          {/*
+           * El repo, escrito. El título también enlaza ahí, pero un título que
+           * es un enlace no se lee como un enlace: nadie lo prueba. Acá la URL
+           * está a la vista, y en papel queda escrita, que es la única forma
+           * de seguirla desde una hoja.
+           */}
+          {caseStudy.link ? (
+            <a
+              className="underline underline-offset-4 hover:text-foreground"
+              href={caseStudy.link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {caseStudy.link.label}
+            </a>
+          ) : null}
         </div>
       </div>
+
+      {/*
+       * El video va arriba del contenido y no al costado: la columna de texto
+       * ya ocupa 66ch de los 48rem de la página, así que al costado no entra
+       * nada legible.
+       */}
+      {caseStudy.video ? (
+        <VideoFigure
+          src={caseStudy.video.src}
+          caption={caseStudy.video.caption}
+        />
+      ) : null}
 
       <div className="measure space-y-3">
         <Block label="problema">
